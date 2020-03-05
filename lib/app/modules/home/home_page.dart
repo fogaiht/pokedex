@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     pageController = InfinityPageController(initialPage: 0);
-  pageViewController = PageController(initialPage:1);
+  pageViewController = PageController(initialPage:0);
 
     super.initState();
   }

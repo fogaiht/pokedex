@@ -8,24 +8,33 @@ class PokedexScreen extends StatefulWidget {
 class _PokedexScreenState extends State<PokedexScreen> {
   @override
   Widget build(BuildContext context) {
+    double widthSize = MediaQuery.of(context).size.width;
+    double heightSize = MediaQuery.of(context).size.height;
+    double width1Size = widthSize * 0.00243;
+    double height1Size = heightSize * 0.00117;
     return Container(
-      height: 500,
-      width: MediaQuery.of(context).size.width,
+      // height: 500,
+      height: heightSize * 0.585,
+      width: widthSize,
       color: Color(0xffE51D20),
       child: Stack(
         children: <Widget>[
           Positioned(
-            top: 60,
-            right: 35,
+            // top: 60,
+            // right: 35,
+            top: heightSize * 0.065,
+            right: widthSize * 0.085,
             child: Container(
-              width: 350,
-              height: 300,
+              // width: 350,
+              width: widthSize * 0.85,
+              // height: 300,
+              height: heightSize * 0.354,
               child: ClipPath(
                 clipper: ClipScreen(),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(15.0),
+                      Radius.circular(heightSize * 0.025),
                     ),
                     color: Color(0xffaaaaaa),
                   ),
@@ -34,39 +43,50 @@ class _PokedexScreenState extends State<PokedexScreen> {
             ),
           ),
           Positioned(
-            top: 75,
-            left: 165,
+            // top: 75,
+            top: heightSize * 0.088,
+            // left: 165,
+            left: widthSize * 0.412,
             child: Container(
-              width: 10,
-              height: 10,
+              // width: 10,
+              // height: 10,
+              width: heightSize * 0.0117,
+              height: heightSize * 0.0117,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(heightSize * 0.1)),
                 color: Color(0xffff0000),
               ),
             ),
           ),
           Positioned(
-            top: 75,
-            right: 165,
+            top: heightSize * 0.088,
+            right: widthSize * 0.412,
             child: Container(
-              width: 10,
-              height: 10,
+              width: heightSize * 0.0117,
+              height: heightSize * 0.0117,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(heightSize * 0.1)),
                 color: Color(0xffff0000),
               ),
             ),
           ),
+          
           Positioned(
-            top: 100,
-            left: 75,
+            //  top: 100,
+            // left: 75,
+            top: heightSize * 0.117,
+            left: widthSize * 0.182,
             child: Container(
-              width: 260,
-              height: 200,
+              width: widthSize * 0.632,
+              height: heightSize * 0.234,
+              // width: 260,
+              // height: 200,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(heightSize * 0.0175)),
                 color: Color(0xff222222),
-                
               ),
               child: Center(
                 child: Text(
@@ -82,47 +102,52 @@ class _PokedexScreenState extends State<PokedexScreen> {
             ),
           ),
           Positioned(
-            bottom: 175,
-            left: 80,
+            // bottom: 175,
+            // left: 80,
+            bottom: height1Size * 175,
+            left: width1Size * 80,
             child: Container(
               width: 13,
               height: 13,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(heightSize * 0.1)),
                 color: Color(0xffff0000),
               ),
             ),
           ),
           Positioned(
-            bottom: 145,
-            right: 80,
+            // bottom: 145,
+            // right: 80,
+            bottom: height1Size * 145,
+            right: width1Size * 80,
             child: Container(
-              height: 50,
+              height: height1Size * 50,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
-                    width: 40,
+                    width: width1Size * 40,
                     height: 1,
                     color: Color(0xff000000),
                   ),
                   Container(
-                    width: 40,
+                    width: width1Size * 40,
                     height: 1,
                     color: Color(0xff000000),
                   ),
                   Container(
-                    width: 40,
+                    width: width1Size * 40,
                     height: 1,
                     color: Color(0xff000000),
                   ),
                   Container(
-                    width: 40,
+                    width: width1Size * 40,
                     height: 1,
                     color: Color(0xff000000),
                   ),
                   Container(
-                    width: 40,
+                    width: width1Size * 40,
                     height: 1,
                     color: Color(0xff000000),
                   ),

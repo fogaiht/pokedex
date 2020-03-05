@@ -2,12 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class PokedexButtonSearch extends StatefulWidget {
+class PokedexBottom extends StatefulWidget {
   @override
-  _PokedexButtonSearchState createState() => _PokedexButtonSearchState();
+  _PokedexBottomState createState() => _PokedexBottomState();
 }
 
-class _PokedexButtonSearchState extends State<PokedexButtonSearch> {
+class _PokedexBottomState extends State<PokedexBottom> {
   @override
   Widget build(BuildContext context) {
     return Padding(
