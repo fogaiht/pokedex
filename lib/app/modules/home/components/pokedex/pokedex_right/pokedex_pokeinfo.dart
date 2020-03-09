@@ -253,7 +253,7 @@ class _PokeInfoState extends State<PokeInfo> {
                     Align(
                       alignment: Alignment.topCenter,
                       child: Padding(
-                        padding: EdgeInsets.only(top: 48.0, bottom: 18),
+                        padding: EdgeInsets.only(top: heightSize * 0.05, bottom: heightSize * 0.01),
                         child: Container(
                           decoration: BoxDecoration(
                               // color: Colors.green[800],
@@ -270,7 +270,7 @@ class _PokeInfoState extends State<PokeInfo> {
                                     fontWeight: FontWeight.w900),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(heightSize * 0.01),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: Colors.white,
