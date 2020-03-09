@@ -55,6 +55,10 @@ flutter:
   - family: SevenSegment
     fonts: 
         - asset: assets/fonts/seven_segments.ttf
+
+  - family: Montserrat
+    fonts: 
+        - asset: assets/fonts/MontserratRegular.ttf
   
   - family: Pokemon
     fonts:

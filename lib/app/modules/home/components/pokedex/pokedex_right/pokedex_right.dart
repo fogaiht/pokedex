@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_right/poke_join_right.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_right/pokedex_header_right.dart';
+
+import 'poke_join_right.dart';
+import 'pokedex_screen_right.dart';
 
 class PokedexRight extends StatefulWidget {
   @override
@@ -10,20 +11,17 @@ class PokedexRight extends StatefulWidget {
 class _PokedexRightState extends State<PokedexRight> {
   @override
   Widget build(BuildContext context) {
+    double widthSize = MediaQuery.of(context).size.width;
+    double heightSize = MediaQuery.of(context).size.height;
     return Container(
       child: Stack(
         children: <Widget>[
           Positioned(
-            top: 120,
-            bottom: 15,
-            child: PokedexHeaderRight(),
-          ),
+              top: heightSize * 0.152,
+              bottom: heightSize * 0.025,
+              child: PokedexScreenRight()),
           Positioned(
-            top: 105,
-            bottom: 15,
-            left: 0,
-            child: PokejoinRight(),
-          ),
+              bottom: heightSize * 0.025, left: 0, child: PokejoinRight()),
         ],
       ),
     );

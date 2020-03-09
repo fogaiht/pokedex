@@ -9,20 +9,16 @@ class _PokedexHeaderState extends State<PokedexHeader> {
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
-    double heightSize = MediaQuery.of(context).size.height;
+    double heightSize = MediaQuery.of(context).size.height * 0.95;
     return Container(
-      // color: Colors.red[],
       child: Stack(
         children: <Widget>[
           Container(
             width: widthSize,
-            // height: 165,
-            height: heightSize * 0.5,
+            height: heightSize * 0.22,
             decoration: BoxDecoration(
               color: Color(0xffE51D20),
               borderRadius: BorderRadius.only(
-                // topLeft: Radius.circular(30.0),
-                // topRight: Radius.circular(30.0),
                 topLeft: Radius.circular(heightSize * 0.035),
                 topRight: Radius.circular(heightSize * 0.035),
               ),
@@ -32,8 +28,7 @@ class _PokedexHeaderState extends State<PokedexHeader> {
             clipper: ClipHeaderShadow(),
             child: Container(
               width: widthSize,
-              // height: 165,
-              height: heightSize * 0.195,
+              height: heightSize * 0.22,
               decoration: BoxDecoration(
                 color: Colors.red[900],
                 borderRadius: BorderRadius.only(
@@ -47,8 +42,7 @@ class _PokedexHeaderState extends State<PokedexHeader> {
             clipper: ClipHeader(),
             child: Container(
               width: widthSize,
-              // height: 150,
-              height: heightSize * 0.175,
+              height: heightSize * 0.22,
               decoration: BoxDecoration(
                 color: Colors.red[700],
                 borderRadius: BorderRadius.only(
@@ -59,61 +53,49 @@ class _PokedexHeaderState extends State<PokedexHeader> {
             ),
           ),
           Positioned(
-            // top: 20,
-            // left: 120,
-
-            top: heightSize * 0.025,
-            left: widthSize * 0.3,
+            bottom: heightSize * 0.166,
+            left: widthSize * 0.36,
             child: Container(
-              // height: 20,
-              // width: 20,
-              height: widthSize * 0.05,
-              width: widthSize * 0.05,
+              height: widthSize * 0.04,
+              width: widthSize * 0.04,
               decoration: BoxDecoration(
-                color: Colors.red[900],
-                borderRadius: BorderRadius.circular(heightSize * 0.06),
-                // borderRadius: BorderRadius.circular(50),
+                color: Color(0xffff0000),
+                borderRadius: BorderRadius.circular(heightSize),
               ),
             ),
           ),
           Positioned(
-            top: heightSize * 0.025,
-            // left: 150,
-            left: widthSize * 0.37,
+            bottom: heightSize * 0.166,
+            left: widthSize * 0.423,
             child: Container(
-              height: widthSize * 0.05,
-              width: widthSize * 0.05,
+              height: widthSize * 0.04,
+              width: widthSize * 0.04,
               decoration: BoxDecoration(
-                color: Colors.yellow[800],
-                borderRadius: BorderRadius.circular(heightSize * 0.06),
+                color: Color(0xffffff00),
+                borderRadius: BorderRadius.circular(heightSize),
               ),
             ),
           ),
           Positioned(
-            top: heightSize * 0.025,
-            // left: 180,
-            left: widthSize * 0.44,
+            bottom: heightSize * 0.166,
+            left: widthSize * 0.486,
             child: Container(
-              height: widthSize * 0.05,
-              width: widthSize * 0.05,
+              height: widthSize * 0.04,
+              width: widthSize * 0.04,
               decoration: BoxDecoration(
-                color: Colors.green,
+                color: Color(0xff00ff00),
                 borderRadius: BorderRadius.circular(heightSize * 0.06),
               ),
             ),
           ),
           Positioned(
-            // top: 40,
-            // left: 25,
-            top: heightSize * 0.05,
-            left: widthSize * 0.05,
+            top: heightSize * 0.166 * 0.26,
+            left: widthSize * 0.11,
             child: Container(
-              // height: 75,
-              // width: 75,
               height: widthSize * 0.185,
               width: widthSize * 0.185,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(heightSize * 0.06),
+                borderRadius: BorderRadius.circular(heightSize),
                 color: Colors.blue[800],
                 boxShadow: [
                   BoxShadow(
@@ -129,11 +111,9 @@ class _PokedexHeaderState extends State<PokedexHeader> {
               ),
               child: Container(
                 alignment: Alignment.topLeft,
-                // margin: EdgeInsets.only(left: 18.0, top: 15),
-                margin: EdgeInsets.only(left: widthSize * 0.0432, top: widthSize * 0.036),
+                margin: EdgeInsets.only(
+                    left: widthSize * 0.0432, top: widthSize * 0.036),
                 child: Container(
-                  // width: 15,
-                  // height: 15,
                   width: widthSize * 0.036,
                   height: widthSize * 0.036,
                   decoration: BoxDecoration(
@@ -151,14 +131,15 @@ class _PokedexHeaderState extends State<PokedexHeader> {
 }
 
 class ClipHeader extends CustomClipper<Path> {
+  // height: heightSize * 0.22, => 4,28cm
   @override
   Path getClip(Size size) {
     var path = Path();
     // path.lineTo(0.0, 0.0);
-    path.lineTo(0.0, size.height);
-    path.lineTo(size.width * 0.5, size.height);
-    path.lineTo(size.width * 0.7, size.height * 0.6);
-    path.lineTo(size.width, size.height * 0.6);
+    path.lineTo(0.0, size.height * 0.85);
+    path.lineTo(size.width * 0.45, size.height * 0.85);
+    path.lineTo(size.width * 0.6, size.height * 0.544);
+    path.lineTo(size.width, size.height * 0.544);
     path.lineTo(size.width, 0.0);
     // path.lineTo(0.0, 0.0);
 
@@ -177,9 +158,9 @@ class ClipHeaderShadow extends CustomClipper<Path> {
     var path = Path();
     // path.lineTo(0.0, 0.0);
     path.lineTo(0.0, size.height);
-    path.lineTo(size.width * 0.53, size.height);
-    path.lineTo(size.width * 0.73, size.height * 0.65);
-    path.lineTo(size.width, size.height * 0.65);
+    path.lineTo(size.width * 0.45, size.height);
+    path.lineTo(size.width * 0.6, size.height * 0.696);
+    path.lineTo(size.width, size.height * 0.696);
     path.lineTo(size.width, 0.0);
     // path.lineTo(0.0, 0.0);
 

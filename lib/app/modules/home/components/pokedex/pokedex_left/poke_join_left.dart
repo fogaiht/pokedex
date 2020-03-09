@@ -7,32 +7,36 @@ class PokejoinLeft extends StatefulWidget {
 
 class _PokejoinLeftState extends State<PokejoinLeft> {
   @override
-  Widget build(BuildContext context) {  
-    double widthSize = MediaQuery.of(context).size.width;
-    double heightSize = MediaQuery.of(context).size.height;
+  Widget build(BuildContext context) {
+    // double widthSize = MediaQuery.of(context).size.width * 0.1;
+    double widthSize = MediaQuery.of(context).size.width * 0.05;
+    double heightSize = MediaQuery.of(context).size.height * 0.78;
     return Container(
-      width: widthSize * 0.05,
+      width: widthSize,
+      height: heightSize,
+      decoration: BoxDecoration(
+        color: Colors.red[800],
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(heightSize * 0.045),
+          bottomLeft: Radius.circular(heightSize * 0.045),
+        ),
+      ),
       child: Stack(
         children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.red[800],
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                bottomLeft: Radius.circular(30),
-              ),
+          Positioned(
+            top: heightSize * 0.09,
+            child: Container(
+              width: widthSize,
+              height: heightSize * 0.015,
+              color: Colors.red[900],
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Container(color: Colors.red[900], height: heightSize * 0.02),
-                SizedBox(height: heightSize * 0.001),
-                SizedBox(height: heightSize * 0.001),
-                SizedBox(height: heightSize * 0.001),
-                SizedBox(height: heightSize * 0.001),
-                SizedBox(height: heightSize * 0.001),
-                Container(color: Colors.red[900], height: heightSize * 0.02)
-              ],
+          ),
+          Positioned(
+            bottom: heightSize * 0.09,
+            child: Container(
+              width: widthSize,
+              height: heightSize * 0.015,
+              color: Colors.red[900],
             ),
           ),
         ],

@@ -12,27 +12,16 @@ class PokedexLeft extends StatefulWidget {
 class _PokedexLeftState extends State<PokedexLeft> {
   @override
   Widget build(BuildContext context) {
+    double widthSize = MediaQuery.of(context).size.width;
+    double heightSize = MediaQuery.of(context).size.height;
     return Container(
       child: Stack(
         children: <Widget>[
+          Positioned(top: heightSize * 0.025, child: PokedexHeader()),
+          Positioned(top: heightSize * 0.233, child: PokedexScreen()),
+          Positioned(bottom: heightSize * 0.025, child: PokedexBottom()),
           Positioned(
-            top: 15,
-            child: PokedexHeader(),
-          ),
-          Positioned(
-            top: 180,
-            child: PokedexScreen(),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: PokedexBottom(),
-          ),
-          Positioned(
-            top: 105,
-            bottom: 15,
-            right: 0,
-            child: PokejoinLeft(),
-          ),
+              bottom: heightSize * 0.025, right: 0, child: PokejoinLeft()),
         ],
       ),
     );
