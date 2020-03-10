@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PokedexBaseStats extends StatefulWidget {
-  final double widthSize;
-  final double heightSize;
+  
 
-  const PokedexBaseStats({Key key, this.widthSize, this.heightSize})
-      : super(key: key);
+  
   @override
   _PokedexBaseStatsState createState() => _PokedexBaseStatsState();
 }
@@ -51,7 +49,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "",
                   textAlign: TextAlign.end,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w900,
                   ),
@@ -69,7 +67,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "HP",
                   textAlign: TextAlign.end,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w500,
                   ),
@@ -82,7 +80,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "45",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w700,
                   ),
@@ -122,7 +120,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "Attack",
                   textAlign: TextAlign.end,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w500,
                   ),
@@ -135,7 +133,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "49",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w700,
                   ),
@@ -175,7 +173,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "Defense",
                   textAlign: TextAlign.end,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w500,
                   ),
@@ -184,11 +182,12 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
               ),
               Container(
                 width: widthSize * 0.2,
+                
                 child: Text(
                   "49",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w700,
                   ),
@@ -228,7 +227,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "Sp Attack",
                   textAlign: TextAlign.end,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w500,
                   ),
@@ -241,7 +240,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "65",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w700,
                   ),
@@ -281,7 +280,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "Sp Defense",
                   textAlign: TextAlign.end,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w500,
                   ),
@@ -294,7 +293,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "65",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w700,
                   ),
@@ -334,7 +333,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "Speed",
                   textAlign: TextAlign.end,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w500,
                   ),
@@ -347,7 +346,7 @@ class _PokedexBaseStatsState extends State<PokedexBaseStats> {
                   "45",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: heightSize * 0.025,
+                    fontSize: heightSize * 0.023,
                     fontFamily: "Montserrat",
                     fontWeight: FontWeight.w700,
                   ),

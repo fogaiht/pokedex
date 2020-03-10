@@ -10,7 +10,7 @@ class AuthRepository extends Disposable {
 
   AuthRepository() {
     _client = Dio();
-    _client.options.baseUrl = BASE_URL;
+    _client.options.baseUrl = GET_POKEMON;
     // _client.interceptors.add(AuthInterceptors());
     _client.interceptors.add(CustomInterceptors());
     _client.options.connectTimeout = 15000;
@@ -62,10 +62,10 @@ class AuthRepository extends Disposable {
     }
   }
 
-  Future<Response> getDeck() async {
+  Future<Response> getPokeInfo(int pokeId) async {
 //    await Future.delayed(Duration(milliseconds: 2500));
     try {
-      var response = await _client.get("/card/myDeck");
+      var response = await _client.get("/$pokeId");
 //      var response = await _client.get("/card/listCardsByUser");
       return response;
     } on DioError catch (e) {

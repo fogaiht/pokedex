@@ -9,6 +9,23 @@ part of 'poke_detail_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PokeDetailController on _PokeDetailControllerBase, Store {
+  final _$pokeModelAtom = Atom(name: '_PokeDetailControllerBase.pokeModel');
+
+  @override
+  PokeModel get pokeModel {
+    _$pokeModelAtom.context.enforceReadPolicy(_$pokeModelAtom);
+    _$pokeModelAtom.reportObserved();
+    return super.pokeModel;
+  }
+
+  @override
+  set pokeModel(PokeModel value) {
+    _$pokeModelAtom.context.conditionallyRunInAction(() {
+      super.pokeModel = value;
+      _$pokeModelAtom.reportChanged();
+    }, _$pokeModelAtom, name: '${_$pokeModelAtom.name}_set');
+  }
+
   final _$valueAtom = Atom(name: '_PokeDetailControllerBase.value');
 
   @override
@@ -42,7 +59,8 @@ mixin _$PokeDetailController on _PokeDetailControllerBase, Store {
 
   @override
   String toString() {
-    final string = 'value: ${value.toString()}';
+    final string =
+        'pokeModel: ${pokeModel.toString()},value: ${value.toString()}';
     return '{$string}';
   }
 }

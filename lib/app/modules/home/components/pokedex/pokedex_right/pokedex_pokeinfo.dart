@@ -78,7 +78,6 @@ class _PokeInfoState extends State<PokeInfo> {
             Positioned(
               top: heightSize * 0.2,
               child: Container(
-                // color: Colors.teal,
                 width: widthSize,
                 height: heightSize,
                 child: Stack(
@@ -110,7 +109,6 @@ class _PokeInfoState extends State<PokeInfo> {
                               ),
                             ),
                           ),
-                          
                           Container(
                             width: heightSize * 0.245,
                             child: Text(
@@ -159,31 +157,30 @@ class _PokeInfoState extends State<PokeInfo> {
                             // border: Border.all(width: 1, color: Colors.red),
                             ),
                         child: Container(
-                          decoration: BoxDecoration(
-                            // color: Colors.grey,
-                            // border:
-                            //     Border.all(width: 1, color: Colors.grey),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: baseStats
-                              ? Transform.scale(
-                                  scale: 1,
-                                  child: Image.asset(
-                                      'assets/capturedPokemonStar.png'))
-                              : 
-                              Transform.scale(
-                                  scale: 1,
-                                  child: Image.asset(
-                                      'assets/notCapturedPokemonStar.png'))
-                              // Text(
-                              //     "Captured",
-                              //     textAlign: TextAlign.center,
-                              //     style: TextStyle(
-                              //         fontSize: heightSize * 0.03,
-                              //         fontFamily: "Pokemon",
-                              //         color: Colors.red),
-                              //   ),
-                        ),
+                            decoration: BoxDecoration(
+                              // color: Colors.grey,
+                              // border:
+                              //     Border.all(width: 1, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: baseStats
+                                ? Transform.scale(
+                                    scale: 1,
+                                    child: Image.asset(
+                                        'assets/capturedPokemonStar.png'))
+                                : Transform.scale(
+                                    scale: 1,
+                                    child: Image.asset(
+                                        'assets/notCapturedPokemonStar.png'))
+                            // Text(
+                            //     "Captured",
+                            //     textAlign: TextAlign.center,
+                            //     style: TextStyle(
+                            //         fontSize: heightSize * 0.03,
+                            //         fontFamily: "Pokemon",
+                            //         color: Colors.red),
+                            //   ),
+                            ),
                       ),
                     ),
                     Positioned(
@@ -201,8 +198,6 @@ class _PokeInfoState extends State<PokeInfo> {
                           children: <Widget>[
                             Container(
                               width: widthSize * 0.18,
-                              
-                              
                               child: Center(
                                 child: Text(
                                   "Type",

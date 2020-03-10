@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poke_api/app/modules/home/components/pokedex/pokedex_right/pokedex_pokeinfo.dart';
+import 'package:poke_api/app/modules/home/poke_detail/poke_detail_module.dart';
 
 class PokedexScreenRight extends StatefulWidget {
   @override
@@ -34,22 +35,7 @@ class _PokedexScreenRightState extends State<PokedexScreenRight> {
                     borderRadius:
                         BorderRadius.all(Radius.circular(heightSize * 0.035))),
               ),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    title = !title;
-                  });
-                },
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
+            ),            
             Positioned(
               top: heightSize * 0.03,
               bottom: heightSize * 0.03,

@@ -1,8 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poke_api/app/modules/home/poke_screen/poke_screen_controller.dart';
 
 class PokedexBottom extends StatefulWidget {
+  final Function onRightTap;
+  final Function onLeftTap;
+
+  const PokedexBottom({Key key, this.onRightTap, this.onLeftTap}) : super(key: key);
   @override
   _PokedexBottomState createState() => _PokedexBottomState();
 }
@@ -12,6 +18,9 @@ class _PokedexBottomState extends State<PokedexBottom> {
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
     double heightSize = MediaQuery.of(context).size.height * 0.23;
+
+PokeScreenController pokeScreenController = Modular.get();
+
     return Container(
       height: heightSize,
       width: widthSize,
@@ -74,36 +83,76 @@ class _PokedexBottomState extends State<PokedexBottom> {
             ),
           ),
           Positioned(
+            top: widthSize * 0.106,
+            right: widthSize * 0.106,
+            child: GestureDetector(
+              onTap: pokeScreenController.increment,
+              child: Container(
+                width: widthSize * 0.106,
+                height: widthSize * 0.106,
+                decoration: BoxDecoration(
+                  color: Color(0xff000000),
+                ),
+                child: Center(child: Icon(Icons.arrow_right, color: Colors.white, size: widthSize * 0.106,)),
+              ),
+            ),
+          ),
+          Positioned(
+            top: widthSize * 0.106,
+            right: widthSize * 0.106 * 3,
+            child: GestureDetector(
+              onTap: pokeScreenController.decrement,
+              child: Container(
+                width: widthSize * 0.106,
+                height: widthSize * 0.106,
+                decoration: BoxDecoration(
+                  color: Color(0xff000000),
+                ),
+                child: Center(child: Icon(Icons.arrow_left, color: Colors.white, size: widthSize * 0.106,)),
+              ),
+            ),
+          ),
+          Positioned(
             bottom: heightSize * 0.4,
             left: widthSize * 0.253,
-            child: Container(
-              width: widthSize * 0.286,
-              height: heightSize * 0.37,
-              child: Icon(
-                Icons.fingerprint,
-                size: heightSize * 0.236,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.green[500],
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(width: 3, color: Colors.green[300]),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 5.0,
-                    offset: Offset(1.0, 3.0),
-                  ),
-                ],
+            child: GestureDetector(
+              onTap: () {
+                print("object");
+              },
+              child: Container(
+                width: widthSize * 0.286,
+                height: heightSize * 0.37,
+                child: Icon(
+                  Icons.fingerprint,
+                  size: heightSize * 0.236,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.green[500],
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(width: 3, color: Colors.green[300]),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 5.0,
+                      offset: Offset(1.0, 3.0),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
           Positioned(
             left: widthSize * 0.106,
             top: 0,
-            child: Container(
-              height: heightSize * 0.236,
-              width: heightSize * 0.236,
-              decoration: BoxDecoration(
-                  color: Colors.black, borderRadius: BorderRadius.circular(50)),
+            child: GestureDetector(
+              onTap: (){
+                Modular.to.pushNamed("/home/pokeDetail");
+              },
+                          child: Container(
+                height: heightSize * 0.236,
+                width: heightSize * 0.236,
+                decoration: BoxDecoration(
+                    color: Colors.black, borderRadius: BorderRadius.circular(50)),
+              ),
             ),
           ),
         ],

@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poke_api/app/modules/home/poke_screen/poke_screen_controller.dart';
 
 class PokedexScreen extends StatefulWidget {
- 
+  final int pokeNumber;
+
+  const PokedexScreen({Key key, this.pokeNumber}) : super(key: key);
+
   @override
   _PokedexScreenState createState() => _PokedexScreenState();
 }
 
+List<String> cardGenerate = List<String>.generate(30, (i) {
+  return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png";
+});
+
 class _PokedexScreenState extends State<PokedexScreen> {
+PokeScreenController pokeScreenController;
+@override
+  void initState() {
+    pokeScreenController = Modular.get();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
@@ -47,17 +63,27 @@ class _PokedexScreenState extends State<PokedexScreen> {
                     BorderRadius.all(Radius.circular(heightSize * 0.05)),
                 color: Color(0xff222222),
               ),
-              child: Center(
-                child: Text(
-                  "95\nPokemons",
-                  style: TextStyle(
-                    color: Color(0xff00ff00),
-                    fontSize: 45,
-                    fontFamily: 'SevenSegment',
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+              child: Observer(builder: (_) {
+                return Center(
+                  child: 
+                  pokeScreenController.value != 0
+                      ? Transform.scale(
+                          scale: 2.3,
+                          child: Image.network(
+                              pokeScreenController.cardGenerate[pokeScreenController.value - 1]))
+                      : 
+                      Text(
+                          // "${20}\nPokemons",
+                          "${pokeScreenController.cardGenerate.length}\nPokemons",
+                          style: TextStyle(
+                            color: Color(0xff00ff00),
+                            fontSize: 45,
+                            fontFamily: 'SevenSegment',
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                );
+              }),
             ),
           ),
           Positioned(
@@ -133,7 +159,6 @@ class _PokedexScreenState extends State<PokedexScreen> {
                     height: heightSize * 0.0082,
                     color: Color(0xff000000),
                   ),
-                  
                 ],
               ),
             ),

@@ -12,7 +12,7 @@ class CustomInterceptors extends InterceptorsWrapper {
 
   @override
   Future onError(DioError e) async {
-    // print("RESPONSE: [${e.response.statusCode}] -> PATH: ${e.request.path} Custom");
+    print("RESPONSE: [${e?.response?.statusCode}] -> PATH: ${e.request.path} Custom");
 
     return e;
   }
