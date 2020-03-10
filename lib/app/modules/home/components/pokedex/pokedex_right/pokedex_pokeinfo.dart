@@ -1,4 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+
+import 'pokedex_base_stats.dart';
 
 class PokeInfo extends StatefulWidget {
   final Color pokeColor;
@@ -10,6 +14,8 @@ class PokeInfo extends StatefulWidget {
 }
 
 class _PokeInfoState extends State<PokeInfo> {
+  bool baseStats = true;
+
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width * 0.91;
@@ -68,32 +74,59 @@ class _PokeInfoState extends State<PokeInfo> {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: heightSize * 0.245),
+            Positioned(bottom: 0, child: PokedexBaseStats()),
+            Positioned(
+              top: heightSize * 0.2,
               child: Container(
-                // color: Colors.amber,
+                // color: Colors.teal,
                 width: widthSize,
-                height: heightSize * 0.245,
+                height: heightSize,
                 child: Stack(
                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        width: heightSize * 0.245,
-                        height: heightSize * 0.245,
-                        decoration: BoxDecoration(
-                            // color: Colors.green[800],
-                            // border: Border.all(width: 1, color: Colors.black),
+                    Positioned(
+                      bottom: heightSize * 0.72,
+                      left: widthSize * 0.1,
+                      right: widthSize * 0.1,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Container(
+                            width: heightSize * 0.245,
+                            height: heightSize * 0.245,
+                            decoration: BoxDecoration(
+                                // color: Colors.green[800],
+                                // border: Border.all(width: 1, color: Colors.black),
+                                ),
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  baseStats = !baseStats;
+                                });
+                              },
+                              child: Opacity(
+                                opacity: 1,
+                                child: Image.asset('assets/001.png'),
+                              ),
                             ),
-                        child: Opacity(
-                          opacity: 1,
-                          child: Image.asset('assets/001.png'),
-                        ),
+                          ),
+                          
+                          Container(
+                            width: heightSize * 0.245,
+                            child: Text(
+                              "— Bulbasaur —",
+                              style: TextStyle(
+                                fontSize: heightSize * 0.03,
+                                fontFamily: "Montserrat",
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.topRight,
+                    Positioned(
+                      top: heightSize * 0.05,
+                      right: 0,
                       child: Container(
                         width: widthSize * 0.256,
                         height: heightSize * 0.1,
@@ -107,16 +140,55 @@ class _PokeInfoState extends State<PokeInfo> {
                             Text(
                               "#001",
                               style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: "Montserrat",
-                              ),
+                                  fontSize: 30,
+                                  fontFamily: "Pokemon",
+                                  color: Colors.yellow),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.bottomRight,
+                    Positioned(
+                      top: heightSize * 0.185,
+                      right: widthSize * 0.05,
+                      child: Container(
+                        width: widthSize * 0.256,
+                        height: heightSize * 0.125,
+                        decoration: BoxDecoration(
+                            // color: Colors.green[800],
+                            // border: Border.all(width: 1, color: Colors.red),
+                            ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            // color: Colors.grey,
+                            // border:
+                            //     Border.all(width: 1, color: Colors.grey),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: baseStats
+                              ? Transform.scale(
+                                  scale: 1,
+                                  child: Image.asset(
+                                      'assets/capturedPokemonStar.png'))
+                              : 
+                              Transform.scale(
+                                  scale: 1,
+                                  child: Image.asset(
+                                      'assets/notCapturedPokemonStar.png'))
+                              // Text(
+                              //     "Captured",
+                              //     textAlign: TextAlign.center,
+                              //     style: TextStyle(
+                              //         fontSize: heightSize * 0.03,
+                              //         fontFamily: "Pokemon",
+                              //         color: Colors.red),
+                              //   ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: heightSize * 0.2,
+                      left: 0,
                       child: Container(
                         width: widthSize * 0.256,
                         height: heightSize * 0.125,
@@ -127,502 +199,56 @@ class _PokeInfoState extends State<PokeInfo> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text(
-                              "Status",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: "Montserrat",
+                            Container(
+                              width: widthSize * 0.18,
+                              
+                              
+                              child: Center(
+                                child: Text(
+                                  "Type",
+                                  style: TextStyle(
+                                    fontSize: heightSize * 0.025,
+                                    fontFamily: "Montserrat",
+                                  ),
+                                ),
                               ),
                             ),
                             Container(
+                              width: widthSize * 0.18,
                               decoration: BoxDecoration(
-                                // color: Colors.grey,
-                                // border:
-                                //     Border.all(width: 1, color: Colors.grey),
+                                border: Border.all(width: 1, color: Colors.red),
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Center(
                                 child: Text(
-                                  "Not\nCaptured!",
-                                  textAlign: TextAlign.center,
+                                  "Grass",
                                   style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: "Pokemon",
-                                      color: Colors.red),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Container(
-                        width: widthSize * 0.256,
-                        height: heightSize * 0.125,
-                        decoration: BoxDecoration(
-                            // color: Colors.green[800],
-                            // border: Border.all(width: 1, color: Colors.red),
-                            ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: <Widget>[
-                            Text(
-                              "Type",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: "Montserrat",
-                              ),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Container(
-                                  width: widthSize * 0.18,
-                                  decoration: BoxDecoration(
-                                    border:
-                                        Border.all(width: 1, color: Colors.red),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Grass",
-                                      style: TextStyle(
-                                        fontFamily: "Montserrat",
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 8.0),
-                                  child: Container(
-                                    width: widthSize * 0.18,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 1,
-                                        color: Colors.red,
-                                      ),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "Poison",
-                                        style: TextStyle(
-                                          fontFamily: "Montserrat",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: heightSize * 0.49),
-              child: Container(
-                width: widthSize,
-                // color: Colors.blue,
-                child: Stack(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        height: heightSize * 0.245,
-                        decoration: BoxDecoration(
-                            // color: Colors.green[800],
-                            // border: Border.all(width: 1, color: Colors.black),
-                            ),
-                        child: Text(
-                          "— Bulbasaur —",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Montserrat",
-                          ),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Padding(
-                        padding: EdgeInsets.only(top: heightSize * 0.05, bottom: heightSize * 0.01),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              // color: Colors.green[800],
-                              // border: Border.all(width: 1, color: Colors.red),
-                              ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                "Base Stats",
-                                style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: heightSize * 0.02,
                                     fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w900),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(heightSize * 0.01),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    // border:
-                                    //     Border.all(width: 3, color: Colors.black),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: <Widget>[
-                                                  Text(
-                                                    "HP",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  Text(
-                                                    "Attack",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  Text(
-                                                    "Defense",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  Text(
-                                                    "Sp Attack",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  Text(
-                                                    "Sp Defense",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                  Text(
-                                                    "Speed",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w500),
-                                                  ),
-                                                ],
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: <Widget>[
-                                                  Text(
-                                                    "   45",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                                  ),
-                                                  Text(
-                                                    "49",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                                  ),
-                                                  Text(
-                                                    "49",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                                  ),
-                                                  Text(
-                                                    "65",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                                  ),
-                                                  Text(
-                                                    "65",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                                  ),
-                                                  Text(
-                                                    "45",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontFamily: "Montserrat",
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10.0),
-                                            child: Stack(
-                                              children: <Widget>[
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      border: Border.all(
-                                                          width: 1,
-                                                          color: Colors.black)),
-                                                ),
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5 * 0.45,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.green,
-                                                    border: Border(
-                                                      top: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                      left: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10.0),
-                                            child: Stack(
-                                              children: <Widget>[
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      border: Border.all(
-                                                          width: 1,
-                                                          color: Colors.black)),
-                                                ),
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5 * 0.49,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.green,
-                                                    border: Border(
-                                                      top: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                      bottom: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                      left: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10.0),
-                                            child: Stack(
-                                              children: <Widget>[
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      border: Border.all(
-                                                          width: 1,
-                                                          color: Colors.black)),
-                                                ),
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5 * 0.49,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.green,
-                                                    border: Border(
-                                                      top: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                      bottom: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                      left: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10.0),
-                                            child: Stack(
-                                              children: <Widget>[
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      border: Border.all(
-                                                          width: 1,
-                                                          color: Colors.black)),
-                                                ),
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5 * 0.65,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.green,
-                                                    border: Border(
-                                                      top: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                      bottom: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                      left: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10.0),
-                                            child: Stack(
-                                              children: <Widget>[
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      border: Border.all(
-                                                          width: 1,
-                                                          color: Colors.black)),
-                                                ),
-                                                Container(
-                                                  height: heightSize * 0.02,
-                                                  width: widthSize * 0.5 * 0.65,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.green,
-                                                    border: Border(
-                                                      top: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                      bottom: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                      left: BorderSide(
-                                                          width: 0.5,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Stack(
-                                            children: <Widget>[
-                                              Container(
-                                                height: heightSize * 0.02,
-                                                width: widthSize * 0.5,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    border: Border.all(
-                                                        width: 1,
-                                                        color: Colors.black)),
-                                              ),
-                                              Container(
-                                                height: heightSize * 0.02,
-                                                width: widthSize * 0.5 * 0.45,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.green,
-                                                  border: Border(
-                                                    top: BorderSide(
-                                                        width: 0.5,
-                                                        color: Colors.black),
-                                                    bottom: BorderSide(
-                                                        width: 0.5,
-                                                        color: Colors.black),
-                                                    left: BorderSide(
-                                                        width: 0.5,
-                                                        color: Colors.black),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      )
-                                    ],
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            ),
+                            Container(
+                              width: widthSize * 0.18,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 1,
+                                  color: Colors.red,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Poison",
+                                  style: TextStyle(
+                                    fontSize: heightSize * 0.02,
+                                    fontFamily: "Montserrat",
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

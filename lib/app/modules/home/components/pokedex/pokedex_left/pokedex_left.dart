@@ -17,11 +17,23 @@ class _PokedexLeftState extends State<PokedexLeft> {
     return Container(
       child: Stack(
         children: <Widget>[
-          Positioned(top: heightSize * 0.025, child: PokedexHeader()),
-          Positioned(top: heightSize * 0.233, child: PokedexScreen()),
-          Positioned(bottom: heightSize * 0.025, child: PokedexBottom()),
           Positioned(
-              bottom: heightSize * 0.025, right: 0, child: PokejoinLeft()),
+            top: heightSize * 0.025,
+            child: PokedexHeader(),
+          ),
+          Positioned(
+            top: heightSize * 0.233,
+            child: PokedexScreen(),
+          ),
+          Positioned(
+            bottom: heightSize * 0.042,
+            child: PokedexBottom(),
+          ),
+          Positioned(
+            bottom: heightSize * 0.025,
+            right: 0,
+            child: PokejoinLeft(),
+          ),
         ],
       ),
     );
