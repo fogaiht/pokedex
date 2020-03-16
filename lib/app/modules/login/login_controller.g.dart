@@ -128,6 +128,40 @@ mixin _$LoginController on _LoginControllerBase, Store {
     }, _$currentUserAtom, name: '${_$currentUserAtom.name}_set');
   }
 
+  final _$emailAtom = Atom(name: '_LoginControllerBase.email');
+
+  @override
+  String get email {
+    _$emailAtom.context.enforceReadPolicy(_$emailAtom);
+    _$emailAtom.reportObserved();
+    return super.email;
+  }
+
+  @override
+  set email(String value) {
+    _$emailAtom.context.conditionallyRunInAction(() {
+      super.email = value;
+      _$emailAtom.reportChanged();
+    }, _$emailAtom, name: '${_$emailAtom.name}_set');
+  }
+
+  final _$passwordAtom = Atom(name: '_LoginControllerBase.password');
+
+  @override
+  String get password {
+    _$passwordAtom.context.enforceReadPolicy(_$passwordAtom);
+    _$passwordAtom.reportObserved();
+    return super.password;
+  }
+
+  @override
+  set password(String value) {
+    _$passwordAtom.context.conditionallyRunInAction(() {
+      super.password = value;
+      _$passwordAtom.reportChanged();
+    }, _$passwordAtom, name: '${_$passwordAtom.name}_set');
+  }
+
   final _$signInAsyncAction = AsyncAction('signIn');
 
   @override
@@ -216,19 +250,9 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   @override
-  dynamic setType(String value) {
-    final _$actionInfo = _$_LoginControllerBaseActionController.startAction();
-    try {
-      return super.setType(value);
-    } finally {
-      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     final string =
-        'loginModel: ${loginModel.toString()},obscureText: ${obscureText.toString()},subState: ${subState.toString()},pokemonURL: ${pokemonURL.toString()},pokeList: ${pokeList.toString()},pokemonList: ${pokemonList.toString()},currentUser: ${currentUser.toString()}';
+        'loginModel: ${loginModel.toString()},obscureText: ${obscureText.toString()},subState: ${subState.toString()},pokemonURL: ${pokemonURL.toString()},pokeList: ${pokeList.toString()},pokemonList: ${pokemonList.toString()},currentUser: ${currentUser.toString()},email: ${email.toString()},password: ${password.toString()}';
     return '{$string}';
   }
 }

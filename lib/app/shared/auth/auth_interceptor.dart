@@ -15,10 +15,7 @@ class AuthInterceptors extends InterceptorsWrapper {
     var token = auth.token;
     print(token);
 
-    // if (token == null && options.path != "/login") {
-
     if (token == null) {
-      
       dio.lock();
       print("token null");
       token = await dio.login();
@@ -34,7 +31,8 @@ class AuthInterceptors extends InterceptorsWrapper {
 
   @override
   Future onError(DioError e) async {
-   print("RESPONSE: [${e.response?.statusCode}] -> PATH: ${e.request.path} Auth");
+    print(
+        "RESPONSE: [${e.response?.statusCode}] -> PATH: ${e.request.path} Auth");
 
     if (e.response?.statusCode == 402) {
       CustomDio dio = Inject<AppModule>.of().get();
@@ -68,7 +66,8 @@ class AuthInterceptors extends InterceptorsWrapper {
 
   @override
   Future onResponse(Response response) async {
-    print("RESPONSE: [${response.statusCode}] -> PATH: ${response.request.path} Auth");
+    print(
+        "RESPONSE: [${response.statusCode}] -> PATH: ${response.request.path} Auth");
 
     return response;
   }

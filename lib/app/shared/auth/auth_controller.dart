@@ -18,7 +18,6 @@ abstract class _AuthBase with Store {
     print("Auth Controller");
     print(await prefs.read("userData"));
     LoginModel userData = LoginModel.fromJson(await prefs.read("userData"));
-    print("oi");
     var response = await repo.login(userData.toJson());
     token = response["token"];
     return token;

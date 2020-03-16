@@ -1,7 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:mobx/mobx.dart';
 import 'package:poke_api/app/shared/auth/auth_repository.dart';
 import 'package:poke_api/app/shared/custom_dio/custom_dio.dart';
@@ -63,39 +60,32 @@ abstract class _LoginControllerBase with Store {
   @action
   setCurrentUser(String value) => currentUser = value;
 
+  @observable
   String email;
+
+  @observable
   String password;
-  String type;
 
   @action
   setEmail(String value) => email = value;
 
   @action
-  setPassword(String value) {
-    var bytes = utf8.encode(value);
-    var base64Str = base64.encode(bytes);
-    this.password = base64Str;
-  }
-
-  @action
-  setType(String value) => type = value;
+  setPassword(String value) => password = value;
 
   String validateEmail() {
-    if (loginModel.email == null || loginModel.email == "") {
+    if (email == null || email == "") {
       return null;
-    } else if (!RegExp(emailRegExpression)
-        .hasMatch(loginModel.email.toString())) {
+    } else if (!RegExp(emailRegExpression).hasMatch(email)) {
       return "Digite um email válido!";
     }
     return null;
   }
 
   String validatePassword() {
-    if (loginModel.password == null || loginModel.password == "") {
+    if (password == null || password == "") {
       return null;
     } else {
-      var pass64 = utf8.decode(base64.decode(loginModel.password)).toString();
-      if (!RegExp(passwordRegExpression).hasMatch(pass64)) {
+      if (!RegExp(passwordRegExpression).hasMatch(password)) {
         return "Digite uma senha válida!";
       } else {
         return null;
@@ -107,6 +97,8 @@ abstract class _LoginControllerBase with Store {
   signIn(function) async {
     LoginModel model = LoginModel(email: email, password: password);
 
+    print(email);
+    print(password);
     prefs.save("userData", model);
     prefs.save("userEmail", model.email);
 
@@ -127,8 +119,8 @@ abstract class _LoginControllerBase with Store {
   @action
   signInDev() async {
     LoginModel test = LoginModel(
-      email: "thiago@fogaiht.com",
-      password: "fogaiht",
+      email: "thiago@kyros.com",
+      password: "Kyros@123",
     );
 
     prefs.save("userData", test);
@@ -137,10 +129,9 @@ abstract class _LoginControllerBase with Store {
     try {
       subState = SubState.loading;
       var response = await _authRepository.login(test.toJson());
-      print(
-          "RESPOSTA NO CONTROLLER: ${response["user"]["pokemonList"][0]["sprites"]["front_default"]}");
-      setURL(
-          "${response["user"]["pokemonList"][0]["sprites"]["front_default"]}");
+      print("RESPOSTA NO LOGIN CONTROLLER: $response");
+      // setURL(
+      //     "${response["user"]["pokemonList"][0]["sprites"]["front_default"]}");
       if (response != null) {
         subState = SubState.success;
       }
@@ -195,11 +186,6 @@ abstract class _LoginControllerBase with Store {
     }
   }
 
-  Future getPokemon(Dio client, String url) async {
-    var response = await client.get(url);
-    return response;
-  }
-
   getPokeList() async {
     try {
       subState = SubState.loading;
@@ -214,7 +200,6 @@ abstract class _LoginControllerBase with Store {
         })?.toList();
 
         print(pokemonList[1].name);
-
       }
     } catch (e) {
       print(e);

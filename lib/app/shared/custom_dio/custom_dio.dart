@@ -7,7 +7,6 @@ import '../constants.dart';
 import 'custom_interceptor.dart';
 
 class CustomDio extends DioForNative {
-
   CustomDio() {
     options.baseUrl = BASE_URL;
     interceptors.add(CustomInterceptors());
@@ -30,6 +29,4 @@ class CustomDio extends DioForNative {
       throw (e.message);
     }
   }
-
-
 }
