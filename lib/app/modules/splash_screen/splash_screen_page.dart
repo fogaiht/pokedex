@@ -35,7 +35,7 @@ class _SplashScreenPageState extends State<SplashScreenPage>
         duration: Duration(milliseconds: 1000), vsync: this);
     animController.forward();
     Timer(Duration(milliseconds: 2000), () {
-      Modular.to.pushReplacementNamed("/home");
+      Modular.to.pushReplacementNamed("/login");
     });
     super.initState();
   }

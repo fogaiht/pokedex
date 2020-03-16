@@ -6,7 +6,6 @@ class CustomInterceptors extends InterceptorsWrapper {
   Future onRequest(RequestOptions options) async {
     print("REQUEST: [${options.method}] -> PATH: ${options.path} Custom");
     print("${options.headers}");
-
     return options;
   }
 

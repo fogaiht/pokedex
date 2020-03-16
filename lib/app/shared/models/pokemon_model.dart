@@ -1,6 +1,5 @@
 class PokeModel {
   int id;
-  int height;
   bool isDefault;
   bool captured;
   String locationAreaEncounters;
@@ -11,21 +10,20 @@ class PokeModel {
   List<Types> types;
   int weight;
 
-  PokeModel(
-      {this.height,
-      this.id,
-      this.isDefault,
-      this.captured,
-      this.locationAreaEncounters,
-      this.name,
-      this.order,
-      this.sprites,
-      this.stats,
-      this.types,
-      this.weight});
+  PokeModel({
+    this.id,
+    this.isDefault,
+    this.captured = false,
+    this.locationAreaEncounters,
+    this.name,
+    this.order,
+    this.sprites,
+    this.stats,
+    this.types,
+    this.weight,
+  });
 
   PokeModel.fromJson(Map<String, dynamic> json) {
-    height = json['height'];
     id = json['id'];
     isDefault = json['is_default'];
     captured = json['captured'];
@@ -51,7 +49,6 @@ class PokeModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['height'] = this.height;
     data['id'] = this.id;
     data['is_default'] = this.isDefault;
     data['captured'] = this.captured;
@@ -69,6 +66,11 @@ class PokeModel {
     }
     data['weight'] = this.weight;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'PokeModel(id: $id, isDefault: $isDefault, captured: $captured, locationAreaEncounters: $locationAreaEncounters, name: $name, order: $order, sprites: $sprites, stats: $stats, types: $types, weight: $weight)';
   }
 }
 
@@ -89,6 +91,9 @@ class Sprites {
     data['front_default'] = this.frontDefault;
     return data;
   }
+
+  @override
+  String toString() => 'Sprites(backDefault: $backDefault, frontDefault: $frontDefault)';
 }
 
 class Stats {
@@ -113,6 +118,9 @@ class Stats {
     }
     return data;
   }
+
+  @override
+  String toString() => 'Stats(baseStat: $baseStat, effort: $effort, stat: $stat)';
 }
 
 class Stat {
@@ -132,6 +140,9 @@ class Stat {
     data['url'] = this.url;
     return data;
   }
+
+  @override
+  String toString() => 'Stat(name: $name, url: $url)';
 }
 
 class Types {
@@ -153,4 +164,7 @@ class Types {
     }
     return data;
   }
+
+  @override
+  String toString() => 'Types(slot: $slot, type: $type)';
 }

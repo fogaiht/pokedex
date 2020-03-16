@@ -23,9 +23,9 @@ class CustomDio extends DioForNative {
       LoginModel userData = LoginModel.fromJson(await prefs.read("userData"));
       var response = await CustomDio().post("/login", data: userData.toJson());
       print("AQUI A RESPOSTA Ó: ");
-      token = response.data["object"]["token"];
-      print(response.data["object"]["token"]);
-      return response.data["object"]["token"];
+      token = response.data["token"];
+      print(response.data["token"]);
+      return response.data["token"];
     } on DioError catch (e) {
       throw (e.message);
     }
