@@ -9,6 +9,23 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
+  final _$subStateAtom = Atom(name: '_HomeControllerBase.subState');
+
+  @override
+  SubState get subState {
+    _$subStateAtom.context.enforceReadPolicy(_$subStateAtom);
+    _$subStateAtom.reportObserved();
+    return super.subState;
+  }
+
+  @override
+  set subState(SubState value) {
+    _$subStateAtom.context.conditionallyRunInAction(() {
+      super.subState = value;
+      _$subStateAtom.reportChanged();
+    }, _$subStateAtom, name: '${_$subStateAtom.name}_set');
+  }
+
   final _$userAtom = Atom(name: '_HomeControllerBase.user');
 
   @override
@@ -41,6 +58,23 @@ mixin _$HomeController on _HomeControllerBase, Store {
       super.screenPage = value;
       _$screenPageAtom.reportChanged();
     }, _$screenPageAtom, name: '${_$screenPageAtom.name}_set');
+  }
+
+  final _$testeAtom = Atom(name: '_HomeControllerBase.teste');
+
+  @override
+  bool get teste {
+    _$testeAtom.context.enforceReadPolicy(_$testeAtom);
+    _$testeAtom.reportObserved();
+    return super.teste;
+  }
+
+  @override
+  set teste(bool value) {
+    _$testeAtom.context.conditionallyRunInAction(() {
+      super.teste = value;
+      _$testeAtom.reportChanged();
+    }, _$testeAtom, name: '${_$testeAtom.name}_set');
   }
 
   final _$currentURLAtom = Atom(name: '_HomeControllerBase.currentURL');
@@ -82,6 +116,13 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   Future getUser() {
     return _$getUserAsyncAction.run(() => super.getUser());
+  }
+
+  final _$addPokemonAsyncAction = AsyncAction('addPokemon');
+
+  @override
+  Future addPokemon(String pokeNumber) {
+    return _$addPokemonAsyncAction.run(() => super.addPokemon(pokeNumber));
   }
 
   final _$_HomeControllerBaseActionController =
@@ -130,7 +171,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   String toString() {
     final string =
-        'user: ${user.toString()},screenPage: ${screenPage.toString()},currentURL: ${currentURL.toString()},screenIndex: ${screenIndex.toString()}';
+        'subState: ${subState.toString()},user: ${user.toString()},screenPage: ${screenPage.toString()},teste: ${teste.toString()},currentURL: ${currentURL.toString()},screenIndex: ${screenIndex.toString()}';
     return '{$string}';
   }
 }

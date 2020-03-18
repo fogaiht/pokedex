@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SignUpForm extends StatelessWidget {
+class SignUpForm2 extends StatelessWidget {
   final String labelText;
   final onFinished;
   final onChanged;
@@ -16,7 +16,7 @@ class SignUpForm extends StatelessWidget {
   final Function() changeVisibility;
   final bool obscureText;
 
-  const SignUpForm({
+  const SignUpForm2({
     Key key,
     this.labelText,
     this.onFinished,

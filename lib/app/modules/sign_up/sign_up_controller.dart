@@ -52,6 +52,19 @@ abstract class _SignUpControllerBase with Store {
   @action
   changeVisibility() => visibility = !visibility;
 
+  // @observable
+  // bool visibilityPassword = true;
+  // @action
+  // changeVisibilityPassword() => visibilityPassword = !visibilityPassword;
+  
+  // @observable
+  // bool visibilityConfirmPassword = true;
+  // @action
+  // changeVisibilityConfirmPassword() => visibilityConfirmPassword = !visibilityConfirmPassword;
+
+
+
+
   String validateEmail() {
     if (email == null || email == "") {
       return null;
@@ -73,6 +86,12 @@ abstract class _SignUpControllerBase with Store {
     }
   }
 
+  String validateConfirmPassword() {
+    if (confirmPassword == password) return null;
+
+    return "Senhas não são iguais, confirme!";
+  }
+
   createUser(function) async {
     var user = {
       "name": name,
@@ -85,7 +104,7 @@ abstract class _SignUpControllerBase with Store {
       var response = await _authRepository.createUser(user);
       print("RESPOSTA NO CONTROLLER: ${response.data}");
       if (response != null) {
-        subState = SubState.success;        
+        subState = SubState.success;
         final Duration pageDelay = Duration(milliseconds: 2000);
         Timer(pageDelay, function);
       }
