@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/poke_join_left.dart';
 import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/pokedex_bottom.dart';
 import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/pokedex_header.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/pokedex_left.dart';
 import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/pokedex_screen.dart';
 import 'package:poke_api/app/modules/home/home_controller.dart';
-import 'package:poke_api/app/modules/home/poke_screen/poke_screen_module.dart';
-import 'package:poke_api/app/shared/models/pokemon_model.dart';
+
 import 'poke_screen_controller.dart';
 
 class PokeScreenPage extends StatefulWidget {
@@ -23,9 +20,11 @@ class _PokeScreenPageState
     extends ModularState<PokeScreenPage, PokeScreenController> {
   //use 'controller' variable to access controller
 
+
   HomeController homeController = Modular.get();
   @override
   Widget build(BuildContext context) {
+    
     double widthSize = MediaQuery.of(context).size.width;
     double heightSize = MediaQuery.of(context).size.height;
     return Container(

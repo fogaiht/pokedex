@@ -1,5 +1,11 @@
+import 'dart:async';
+
 import 'package:mobx/mobx.dart';
+import 'package:poke_api/app/shared/auth/auth_repository.dart';
+import 'package:poke_api/app/shared/models/user_model.dart';
 import 'package:poke_api/app/utils/sub_states.dart';
+
+import '../../app_module.dart';
 
 part 'sign_up_controller.g.dart';
 
@@ -10,6 +16,8 @@ abstract class _SignUpControllerBase with Store {
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   final String passwordRegExpression =
       r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$";
+
+  final AuthRepository _authRepository = AppModule.to.get();
 
   @observable
   String name;
@@ -37,7 +45,12 @@ abstract class _SignUpControllerBase with Store {
   setSubState(SubState value) {
     print(value);
     subState = value;
-    }
+  }
+
+  @observable
+  bool visibility = true;
+  @action
+  changeVisibility() => visibility = !visibility;
 
   String validateEmail() {
     if (email == null || email == "") {
@@ -57,6 +70,28 @@ abstract class _SignUpControllerBase with Store {
       } else {
         return null;
       }
+    }
+  }
+
+  createUser(function) async {
+    var user = {
+      "name": name,
+      "email": email,
+      "password": password,
+      "pokemonList": []
+    };
+    try {
+      subState = SubState.loading;
+      var response = await _authRepository.createUser(user);
+      print("RESPOSTA NO CONTROLLER: ${response.data}");
+      if (response != null) {
+        subState = SubState.success;        
+        final Duration pageDelay = Duration(milliseconds: 2000);
+        Timer(pageDelay, function);
+      }
+    } catch (e) {
+      print(e);
+      subState = SubState.error;
     }
   }
 }

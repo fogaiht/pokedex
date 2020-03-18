@@ -15,7 +15,7 @@ class AuthInterceptors extends InterceptorsWrapper {
     var token = auth.token;
     print(token);
 
-    if (token == null) {
+    if (token == null && options.path != "/create") {
       dio.lock();
       print("token null");
       token = await dio.login();

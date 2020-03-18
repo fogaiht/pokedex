@@ -46,24 +46,20 @@ class AuthRepository extends Disposable {
     }
   }
 
-  Future<Response> getCurrentUser() async {
+  Future<dynamic> getCurrentUser() async {
 //    await Future.delayed(Duration(milliseconds: 2500));
     try {
       var response = await _client.get("/findUserById");
-      return response;
+      return response.data;
     } on DioError catch (e) {
       throw (e.message);
     }
   }
 
-
-  Future<Response> jobExtract(int month, int year) async {
-//    await Future.delayed(Duration(milliseconds: 1500));
+  Future<Response> createUser(Map<dynamic, dynamic> data) async {
     try {
-      var response = await _client.get("/job/extract/$month/$year");
-//      print(response.headers['token']);
-
-//      this.token = response.headers.map['token'].toString();
+      var response = await _client.post("/create", data: data);
+      print("RESPOSTA ADD POKEMON: ${response.data}");
       return response;
     } on DioError catch (e) {
       throw (e.message);
@@ -91,9 +87,10 @@ class AuthRepository extends Disposable {
     }
   }
 
-  Future fetchPost(Dio client) async {
+  Future fetchPost(String url) async {
+    Dio _http = Dio();
     final response =
-    await client.get('https://jsonplaceholder.typicode.com/posts/1');
+        await _http.get(url);
     return response.data;
   }
 

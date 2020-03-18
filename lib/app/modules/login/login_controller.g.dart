@@ -172,8 +172,8 @@ mixin _$LoginController on _LoginControllerBase, Store {
   final _$signInDevAsyncAction = AsyncAction('signInDev');
 
   @override
-  Future signInDev() {
-    return _$signInDevAsyncAction.run(() => super.signInDev());
+  Future signInDev(dynamic function) {
+    return _$signInDevAsyncAction.run(() => super.signInDev(function));
   }
 
   final _$_LoginControllerBaseActionController =

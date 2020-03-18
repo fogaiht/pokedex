@@ -56,7 +56,7 @@ class _CardLoginState extends State<CardLogin> {
     double _heightSize = MediaQuery.of(context).size.height;
     return Transform.scale(
       scale: 0.95,
-          child: Container(
+      child: Container(
         decoration: BoxDecoration(
             color: Color(0x00343131), borderRadius: BorderRadius.circular(30)),
         child: Column(
@@ -139,8 +139,8 @@ class _CardLoginState extends State<CardLogin> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w900),
                           ),
-//                        functionResult: () => Modular.to.pushReplacementNamed("/home"),
-                          functionResult: () => controller.signInDev(),
+                       functionResult: () => controller.signIn(() {Modular.to.pushReplacementNamed("/home");})
+                          // functionResult: () => controller.signInDev(() {Modular.to.pushReplacementNamed("/home");})
                         );
 
 //                      return _stateButton(state: controller.subState, controller: controller, context: context);
@@ -190,7 +190,7 @@ class _CardLoginState extends State<CardLogin> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              width: widget.widthSize*0.8,
+              width: widget.widthSize * 0.8,
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(8.0)),
@@ -206,7 +206,7 @@ class _CardLoginState extends State<CardLogin> {
                   if (nextFocus != null) {
                     FocusScope.of(context).requestFocus(nextFocus);
                   } else {
-                    controller.signIn((){});
+                    controller.signIn(() {Modular.to.pushReplacementNamed("/home");});
                   }
                 },
                 onChanged: onChanged,
@@ -241,7 +241,8 @@ class _CardLoginState extends State<CardLogin> {
                     ),
                     errorText: errorText != null ? errorText() : null,
                     focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.redAccent, width: 0.0),
+                      borderSide:
+                          BorderSide(color: Colors.redAccent, width: 0.0),
                       borderRadius: BorderRadius.circular(6.0),
                     ),
                     errorBorder: OutlineInputBorder(

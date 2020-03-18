@@ -17,10 +17,6 @@ void main() {
       expect(signup, isInstanceOf<SignUpController>());
     });
 
-    test("Set Value", () {
-      expect(signup.value, equals(0));
-      signup.increment();
-      expect(signup.value, equals(1));
-    });
+    
   });
 }

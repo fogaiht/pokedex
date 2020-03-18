@@ -10,7 +10,7 @@ class CustomCircularProgress extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Color(0x00ff0000), width: 3),
         borderRadius: BorderRadius.circular(30),
-        color: Color(0xFF7e23d9),
+        color: Colors.red,
       ),
       duration: Duration(milliseconds: 250),
       child: SpinKitRing(

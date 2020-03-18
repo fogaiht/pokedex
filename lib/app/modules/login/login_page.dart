@@ -26,9 +26,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
       // appBar: AppBar(
       //   title: Text(widget.title),
       // ),
-      body: Observer(
-        builder: (_) {
-          return SafeArea(
+      body: SafeArea(
             child: Center(
               child: SingleChildScrollView(
                 child: Padding(
@@ -53,9 +51,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                 ),
               ),
             ),
-          );
-        },
-      ),
+          ),
     );
   }
 }

@@ -1,25 +1,33 @@
 import 'dart:ui';
-
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/poke_screen/poke_screen_controller.dart';
+import 'package:poke_api/app/modules/home/home_controller.dart';
 
 class PokedexBottom extends StatefulWidget {
   final Function onRightTap;
   final Function onLeftTap;
 
-  const PokedexBottom({Key key, this.onRightTap, this.onLeftTap}) : super(key: key);
+  const PokedexBottom({Key key, this.onRightTap, this.onLeftTap})
+      : super(key: key);
   @override
   _PokedexBottomState createState() => _PokedexBottomState();
 }
 
 class _PokedexBottomState extends State<PokedexBottom> {
+  HomeController homeController;
+
+  @override
+  void initState() {
+    homeController = Modular.get();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
     double heightSize = MediaQuery.of(context).size.height * 0.23;
-
-PokeScreenController pokeScreenController = Modular.get();
 
     return Container(
       height: heightSize,
@@ -86,14 +94,19 @@ PokeScreenController pokeScreenController = Modular.get();
             top: widthSize * 0.106,
             right: widthSize * 0.106,
             child: GestureDetector(
-              onTap: pokeScreenController.increment,
+              onTap: homeController.increment,
               child: Container(
                 width: widthSize * 0.106,
                 height: widthSize * 0.106,
                 decoration: BoxDecoration(
                   color: Color(0xff000000),
                 ),
-                child: Center(child: Icon(Icons.arrow_right, color: Colors.white, size: widthSize * 0.106,)),
+                child: Center(
+                    child: Icon(
+                  Icons.arrow_right,
+                  color: Colors.white,
+                  size: widthSize * 0.106,
+                )),
               ),
             ),
           ),
@@ -101,14 +114,19 @@ PokeScreenController pokeScreenController = Modular.get();
             top: widthSize * 0.106,
             right: widthSize * 0.106 * 3,
             child: GestureDetector(
-              onTap: pokeScreenController.decrement,
+              onTap: homeController.decrement,
               child: Container(
                 width: widthSize * 0.106,
                 height: widthSize * 0.106,
                 decoration: BoxDecoration(
                   color: Color(0xff000000),
                 ),
-                child: Center(child: Icon(Icons.arrow_left, color: Colors.white, size: widthSize * 0.106,)),
+                child: Center(
+                    child: Icon(
+                  Icons.arrow_left,
+                  color: Colors.white,
+                  size: widthSize * 0.106,
+                )),
               ),
             ),
           ),
@@ -117,7 +135,7 @@ PokeScreenController pokeScreenController = Modular.get();
             left: widthSize * 0.253,
             child: GestureDetector(
               onTap: () {
-                print("object");
+                scan();
               },
               child: Container(
                 width: widthSize * 0.286,
@@ -144,20 +162,41 @@ PokeScreenController pokeScreenController = Modular.get();
             left: widthSize * 0.106,
             top: 0,
             child: GestureDetector(
-              onTap: (){
-                Modular.to.pushNamed("/home/pokeDetail");
+              onTap: () {
+                scan();
               },
-                          child: Container(
+              child: Container(
                 height: heightSize * 0.236,
                 width: heightSize * 0.236,
                 decoration: BoxDecoration(
-                    color: Colors.black, borderRadius: BorderRadius.circular(50)),
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(50)),
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  Future scan() async {
+    try {
+      String barcode = await BarcodeScanner.scan();
+      // setState(() => this.qrScan = barcode);
+      homeController.addPokemon(barcode);
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.CameraAccessDenied) {
+        // setState(() {
+        //   this.qrScan = 'The user did not grant the camera permission!';
+        // });
+      } else {
+        // setState(() => this.qrScan = 'Unknown error: $e');
+      }
+    } on FormatException {
+      // setState(() => this.qrScan = '');
+    } catch (e) {
+      // setState(() => this.qrScan = 'Unknown error: $e');
+    }
   }
 }
 

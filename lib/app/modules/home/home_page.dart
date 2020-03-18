@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/pokedex_left.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_right/pokedex_right.dart';
 import 'package:poke_api/app/modules/home/home_controller.dart';
 import 'package:poke_api/app/modules/home/poke_detail/poke_detail_module.dart';
 import 'package:poke_api/app/modules/home/poke_screen/poke_screen_module.dart';
-import 'package:poke_api/app/utils/components/infinity_page_view.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -33,6 +30,7 @@ pageViewController = PageController(initialPage:0);
 
   @override
   Widget build(BuildContext context) {
+    controller.getUser();
     return Container(
       child: Scaffold(
         body: SafeArea(

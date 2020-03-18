@@ -1,13 +1,23 @@
+import 'dart:collection';
+
 import 'package:poke_api/app/shared/models/pokemon_model.dart';
 
 class UserModel {
   List<PokeModel> pokemonList;
   String id;
+  String name;
   String email;
   String created;
   int userType;
 
-  UserModel({this.pokemonList, this.id, this.email, this.created, this.userType});
+  UserModel({
+    this.pokemonList,
+    this.id,
+    this.email,
+    this.created,
+    this.userType,
+    this.name,
+  });
 
   UserModel.fromJson(Map<String, dynamic> json) {
     if (json['pokemonList'] != null) {
@@ -16,7 +26,11 @@ class UserModel {
         pokemonList.add(new PokeModel.fromJson(v));
       });
     }
+
+  pokemonList.sort((a, b) => a.id.compareTo(b.id));
+
     id = json['_id'];
+    name = json['name'];
     email = json['email'];
     created = json['created'];
     userType = json['__v'];
@@ -29,6 +43,7 @@ class UserModel {
     }
     data['_id'] = this.id;
     data['email'] = this.email;
+    data['name'] = this.name;
     data['created'] = this.created;
     data['__v'] = this.userType;
     return data;
@@ -36,6 +51,6 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(pokemonList: $pokemonList, id: $id, email: $email, created: $created, userType: $userType)';
+    return 'UserModel(pokemonList: $pokemonList, id: $id, name: $name, email: $email, created: $created, userType: $userType)';
   }
 }

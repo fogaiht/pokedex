@@ -95,6 +95,23 @@ mixin _$SignUpController on _SignUpControllerBase, Store {
     }, _$subStateAtom, name: '${_$subStateAtom.name}_set');
   }
 
+  final _$visibilityAtom = Atom(name: '_SignUpControllerBase.visibility');
+
+  @override
+  bool get visibility {
+    _$visibilityAtom.context.enforceReadPolicy(_$visibilityAtom);
+    _$visibilityAtom.reportObserved();
+    return super.visibility;
+  }
+
+  @override
+  set visibility(bool value) {
+    _$visibilityAtom.context.conditionallyRunInAction(() {
+      super.visibility = value;
+      _$visibilityAtom.reportChanged();
+    }, _$visibilityAtom, name: '${_$visibilityAtom.name}_set');
+  }
+
   final _$_SignUpControllerBaseActionController =
       ActionController(name: '_SignUpControllerBase');
 
@@ -149,9 +166,19 @@ mixin _$SignUpController on _SignUpControllerBase, Store {
   }
 
   @override
+  dynamic changeVisibility() {
+    final _$actionInfo = _$_SignUpControllerBaseActionController.startAction();
+    try {
+      return super.changeVisibility();
+    } finally {
+      _$_SignUpControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string =
-        'name: ${name.toString()},email: ${email.toString()},password: ${password.toString()},confirmPassword: ${confirmPassword.toString()},subState: ${subState.toString()}';
+        'name: ${name.toString()},email: ${email.toString()},password: ${password.toString()},confirmPassword: ${confirmPassword.toString()},subState: ${subState.toString()},visibility: ${visibility.toString()}';
     return '{$string}';
   }
 }

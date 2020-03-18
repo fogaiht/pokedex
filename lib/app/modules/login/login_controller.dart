@@ -117,10 +117,10 @@ abstract class _LoginControllerBase with Store {
   }
 
   @action
-  signInDev() async {
+  signInDev(function) async {
     LoginModel test = LoginModel(
-      email: "thiago@kyros.com",
-      password: "Kyros@123",
+      email: "thiago@fernandes.com",
+      password: "Thiago@123",
     );
 
     prefs.save("userData", test);
@@ -134,6 +134,8 @@ abstract class _LoginControllerBase with Store {
       //     "${response["user"]["pokemonList"][0]["sprites"]["front_default"]}");
       if (response != null) {
         subState = SubState.success;
+        final Duration pageDelay = Duration(milliseconds: 2000);
+        Timer(pageDelay, function);
       }
     } catch (e) {
       print(e);

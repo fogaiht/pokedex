@@ -9,6 +9,23 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
+  final _$userAtom = Atom(name: '_HomeControllerBase.user');
+
+  @override
+  UserModel get user {
+    _$userAtom.context.enforceReadPolicy(_$userAtom);
+    _$userAtom.reportObserved();
+    return super.user;
+  }
+
+  @override
+  set user(UserModel value) {
+    _$userAtom.context.conditionallyRunInAction(() {
+      super.user = value;
+      _$userAtom.reportChanged();
+    }, _$userAtom, name: '${_$userAtom.name}_set');
+  }
+
   final _$screenPageAtom = Atom(name: '_HomeControllerBase.screenPage');
 
   @override
@@ -26,21 +43,45 @@ mixin _$HomeController on _HomeControllerBase, Store {
     }, _$screenPageAtom, name: '${_$screenPageAtom.name}_set');
   }
 
-  final _$valueAtom = Atom(name: '_HomeControllerBase.value');
+  final _$currentURLAtom = Atom(name: '_HomeControllerBase.currentURL');
 
   @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
+  String get currentURL {
+    _$currentURLAtom.context.enforceReadPolicy(_$currentURLAtom);
+    _$currentURLAtom.reportObserved();
+    return super.currentURL;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
+  set currentURL(String value) {
+    _$currentURLAtom.context.conditionallyRunInAction(() {
+      super.currentURL = value;
+      _$currentURLAtom.reportChanged();
+    }, _$currentURLAtom, name: '${_$currentURLAtom.name}_set');
+  }
+
+  final _$screenIndexAtom = Atom(name: '_HomeControllerBase.screenIndex');
+
+  @override
+  int get screenIndex {
+    _$screenIndexAtom.context.enforceReadPolicy(_$screenIndexAtom);
+    _$screenIndexAtom.reportObserved();
+    return super.screenIndex;
+  }
+
+  @override
+  set screenIndex(int value) {
+    _$screenIndexAtom.context.conditionallyRunInAction(() {
+      super.screenIndex = value;
+      _$screenIndexAtom.reportChanged();
+    }, _$screenIndexAtom, name: '${_$screenIndexAtom.name}_set');
+  }
+
+  final _$getUserAsyncAction = AsyncAction('getUser');
+
+  @override
+  Future getUser() {
+    return _$getUserAsyncAction.run(() => super.getUser());
   }
 
   final _$_HomeControllerBaseActionController =
@@ -57,6 +98,16 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
+  void setPokemon() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
+    try {
+      return super.setPokemon();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void increment() {
     final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
     try {
@@ -67,9 +118,19 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
+  void decrement() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
+    try {
+      return super.decrement();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string =
-        'screenPage: ${screenPage.toString()},value: ${value.toString()}';
+        'user: ${user.toString()},screenPage: ${screenPage.toString()},currentURL: ${currentURL.toString()},screenIndex: ${screenIndex.toString()}';
     return '{$string}';
   }
 }

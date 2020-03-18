@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:poke_api/app/modules/home/home_controller.dart';
 import 'package:poke_api/app/modules/home/poke_screen/poke_screen_controller.dart';
+import 'package:poke_api/app/utils/components/custom_circular_progress.dart';
 
 class PokedexScreen extends StatefulWidget {
   final int pokeNumber;
@@ -17,14 +19,18 @@ List<String> cardGenerate = List<String>.generate(30, (i) {
 });
 
 class _PokedexScreenState extends State<PokedexScreen> {
-PokeScreenController pokeScreenController;
-@override
+  PokeScreenController pokeScreenController;
+  HomeController homeController;
+  @override
   void initState() {
     pokeScreenController = Modular.get();
+    homeController = Modular.get();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
+    homeController.getUser();
     double widthSize = MediaQuery.of(context).size.width;
     double heightSize = MediaQuery.of(context).size.height * 0.46;
     return Container(
@@ -65,23 +71,18 @@ PokeScreenController pokeScreenController;
               ),
               child: Observer(builder: (_) {
                 return Center(
-                  child: 
-                  pokeScreenController.value != 0
-                      ? Transform.scale(
-                          scale: 2.3,
-                          child: Image.network(
-                              pokeScreenController.cardGenerate[pokeScreenController.value - 1]))
-                      : 
-                      Text(
-                          // "${20}\nPokemons",
-                          "${pokeScreenController.cardGenerate.length}\nPokemons",
+                  child: homeController.user?.pokemonList == null
+                      ? CustomCircularProgress()
+                      : homeController.screenIndex == -1 ? Text(
+                          //         // "${20}\nPokemons",
+                          "${homeController.user.pokemonList.length}\nPokemons",
                           style: TextStyle(
                             color: Color(0xff00ff00),
                             fontSize: 45,
                             fontFamily: 'SevenSegment',
                           ),
                           textAlign: TextAlign.center,
-                        ),
+                        ) : Transform.scale(scale: 2.3, child: Image.network(homeController.currentURL)),
                 );
               }),
             ),

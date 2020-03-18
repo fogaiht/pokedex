@@ -43,15 +43,36 @@ mixin _$PokeScreenController on _PokeScreenControllerBase, Store {
     }, _$valueAtom, name: '${_$valueAtom.name}_set');
   }
 
-  final _$getPokemonAsyncAction = AsyncAction('getPokemon');
+  final _$currentUrlAtom = Atom(name: '_PokeScreenControllerBase.currentUrl');
 
   @override
-  Future getPokemon() {
-    return _$getPokemonAsyncAction.run(() => super.getPokemon());
+  String get currentUrl {
+    _$currentUrlAtom.context.enforceReadPolicy(_$currentUrlAtom);
+    _$currentUrlAtom.reportObserved();
+    return super.currentUrl;
+  }
+
+  @override
+  set currentUrl(String value) {
+    _$currentUrlAtom.context.conditionallyRunInAction(() {
+      super.currentUrl = value;
+      _$currentUrlAtom.reportChanged();
+    }, _$currentUrlAtom, name: '${_$currentUrlAtom.name}_set');
   }
 
   final _$_PokeScreenControllerBaseActionController =
       ActionController(name: '_PokeScreenControllerBase');
+
+  @override
+  void setPokemon() {
+    final _$actionInfo =
+        _$_PokeScreenControllerBaseActionController.startAction();
+    try {
+      return super.setPokemon();
+    } finally {
+      _$_PokeScreenControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void increment() {
@@ -78,7 +99,7 @@ mixin _$PokeScreenController on _PokeScreenControllerBase, Store {
   @override
   String toString() {
     final string =
-        'currentPage: ${currentPage.toString()},value: ${value.toString()}';
+        'currentPage: ${currentPage.toString()},value: ${value.toString()},currentUrl: ${currentUrl.toString()}';
     return '{$string}';
   }
 }

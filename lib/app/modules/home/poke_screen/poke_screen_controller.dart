@@ -1,7 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:poke_api/app/modules/home/home_controller.dart';
 import 'package:poke_api/app/shared/auth/auth_repository.dart';
 import 'package:poke_api/app/shared/models/pokemon_model.dart';
+import 'package:poke_api/app/shared/models/user_model.dart';
 
 part 'poke_screen_controller.g.dart';
 
@@ -14,21 +16,38 @@ abstract class _PokeScreenControllerBase with Store {
   });
 
   final AuthRepository _authRepository = Modular.get();
+  HomeController homeController = Modular.get<HomeController>();
 
-PokeModel pokeModel;
-
-@observable
-int currentPage = 0;
+  @observable
+  int currentPage = 0;
 
   @observable
   int value = 0;
 
+  @observable
+  String currentUrl = "";
+
+
+  @action
+  void setPokemon(){
+    value = homeController.user.pokemonList.length;
+    if(value == 0){
+      
+    }
+  }
+
+
+
   @action
   void increment() {
-    if (value < cardGenerate.length) {
+    
+
+    if (value < homeController.user.pokemonList.length) {
+      print(value);
       value++;
       if (value != 0) {
-        getPokemon();
+        currentUrl = homeController.user.pokemonList[value].sprites.frontDefault;
+        // _authRepository.fetchPost(user.pokemonList[value].sprites.frontDefault);
       }
       print(value);
     }
@@ -39,31 +58,23 @@ int currentPage = 0;
     if (value > 0) {
       value--;
       if (value != 0) {
-        getPokemon();
+        _authRepository.fetchPost(homeController.user.pokemonList[value].sprites.frontDefault);
       }
       print(value);
     }
   }
-  @action
-  getPokemon() async {
-    try {
-      var response = await _authRepository.getPokeInfo(value);
-      if (response != null) {
-        // print(response.data);
-        // myStatementList = (response.data["object"] as List)
-        //     .cast<Map<String, dynamic>>()
-        //     ?.map((item) {
-        //   return StatementModel.fromJson(item);
-        // })?.toList();
-        pokeModel = PokeModel.fromJson(response.data);
-        print("ID: ${pokeModel.id}");
-        print("${pokeModel.stats[0].stat.name.toUpperCase()}: ${pokeModel.stats[0].baseStat}");
 
-        // print(myStatementList);
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
+  // @action
+  // getUser() async {
+  //   try {
+  //     var response = await _authRepository.getCurrentUser();
+  //     if (response != null) {
+  //       // print("RESPONSE DATA ${response.data}");
+  //       user = UserModel.fromJson(response.data);
+  //       // print(user.toString());
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 }
-
