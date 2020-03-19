@@ -199,6 +199,8 @@ class _CardLoginState extends State<CardLogin> {
                     ? controller.obscureText
                     : false,
                 keyboardType: keyboardType,
+                textCapitalization: TextCapitalization.none,
+                autocorrect: false,
                 focusNode: currentFocus,
                 textInputAction: TextInputAction.next,
 //      validator: keyboardType == TextInputType.visiblePassword ? (_) => controller.checkPassEmpty() : (_) => controller.checkEmailEmpty(),

@@ -102,6 +102,6 @@ flutter:
 scripts:
   bdx: flutter pub run build_runner build --delete-conflicting-outputs
   clx: flutter pub run build_runner clean
-  wtx: flutter pub run build_runner watch
+  wtx: flutter pub run build_runner watch --delete-conflicting-outputs
   get: flutter pub get
   set_app_icon: flutter pub run flutter_launcher_icons:main

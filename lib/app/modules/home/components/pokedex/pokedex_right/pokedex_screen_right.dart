@@ -20,9 +20,9 @@ class _PokedexScreenRightState extends State<PokedexScreenRight> {
         width: widthSize,
         height: heightSize,
         decoration: BoxDecoration(
-            color: Colors.red[900],
-            borderRadius:
-                BorderRadius.all(Radius.circular(heightSize * 0.035))),
+          color: Colors.red[900],
+          // borderRadius: BorderRadius.all(Radius.circular(heightSize * 0.035)),
+        ),
         child: Stack(
           children: <Widget>[
             ClipPath(
@@ -35,12 +35,12 @@ class _PokedexScreenRightState extends State<PokedexScreenRight> {
                     borderRadius:
                         BorderRadius.all(Radius.circular(heightSize * 0.035))),
               ),
-            ),            
+            ),
             Positioned(
-              top: heightSize * 0.03,
-              bottom: heightSize * 0.03,
-              right: heightSize * 0.03,
-              left: heightSize * 0.03,              
+                top: heightSize * 0.03,
+                bottom: heightSize * 0.03,
+                right: heightSize * 0.03,
+                left: heightSize * 0.03,
                 child: PokeInfo()),
           ],
         ),

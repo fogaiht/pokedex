@@ -20,16 +20,27 @@ class _PokeScreenPageState
     extends ModularState<PokeScreenPage, PokeScreenController> {
   //use 'controller' variable to access controller
 
-
   HomeController homeController = Modular.get();
   @override
   Widget build(BuildContext context) {
-    
     double widthSize = MediaQuery.of(context).size.width;
     double heightSize = MediaQuery.of(context).size.height;
     return Container(
       width: widthSize,
       height: heightSize,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.red[700],
+              Color(0xffE51D20),
+            ],
+            stops: [
+              0,
+              0.5
+            ]),
+      ),
       child: Stack(
         children: <Widget>[
           Positioned(
