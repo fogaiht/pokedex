@@ -27,7 +27,7 @@ abstract class _SignUpControllerBase with Store {
   @observable
   String email;
   @action
-  setEmail(String value) => email = value;
+  setEmail(String value) => email = value.replaceAll(new RegExp(r"\s\b|\b\s"), "");
 
   @observable
   String password;
@@ -79,7 +79,7 @@ abstract class _SignUpControllerBase with Store {
       return null;
     } else {
       if (!RegExp(passwordRegExpression).hasMatch(password)) {
-        return "Digite uma senha válida!";
+        return "A sua senha deve conter pelo menos: \n- Uma letra maiúscula\n- Uma letra minúscula\n- Caracter especial (ex: @#!..)\n- Números\n- 6 Dígitos";
       } else {
         return null;
       }

@@ -37,8 +37,6 @@ class _SignUpFormState extends State<SignUpForm> {
   final FocusNode _nameNode = FocusNode();
   final FocusNode _emailNode = FocusNode();
   final FocusNode _passwordNode = FocusNode();
-  final FocusNode _confirmPasswordNode = FocusNode();
-
   @override
   void initState() {
     controller = Modular.get<SignUpController>();
@@ -152,7 +150,6 @@ class _SignUpFormState extends State<SignUpForm> {
               return _textField(
                 onChanged: controller.setPassword,
                 currentFocus: _passwordNode,
-                nextFocus: _confirmPasswordNode,
                 keyboardType: TextInputType.visiblePassword,
                 errorText: controller.validatePassword,
                 widthSize: widthSize,
@@ -160,36 +157,6 @@ class _SignUpFormState extends State<SignUpForm> {
                 secondaryColor: secondaryColor,
               );
             }),
-            Padding(
-              padding: EdgeInsets.only(top: 16.0),
-              child: Container(
-                width: widthSize,
-                child: Padding(
-                  padding: EdgeInsets.only(left: widthSize * 0.1),
-                  child: Text(
-                    "Confirmar Senha",
-                    style: TextStyle(
-                      color: primaryColor,
-                      fontFamily: "Montserrat",
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Observer(
-              builder: (_) {
-                return _textField(
-                  onChanged: controller.setName,
-                  currentFocus: _confirmPasswordNode,
-                  // nextFocus: _emailNode,
-                  keyboardType: TextInputType.visiblePassword,
-                  // errorText: controller.validate,
-                  widthSize: widthSize,
-                  primaryColor: primaryColor,
-                  secondaryColor: secondaryColor,
-                );
-              },
-            ),
             Observer(builder: (_) {
               return Padding(
                 padding: EdgeInsets.only(top: 16.0),

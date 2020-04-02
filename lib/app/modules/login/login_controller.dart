@@ -67,7 +67,7 @@ abstract class _LoginControllerBase with Store {
   String password;
 
   @action
-  setEmail(String value) => email = value;
+  setEmail(String value) => email = value.replaceAll(new RegExp(r"\s\b|\b\s"), "");
 
   @action
   setPassword(String value) => password = value;
