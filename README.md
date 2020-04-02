@@ -1,4 +1,4 @@
-# poke_api
+# pokedex
 
 A new Flutter project.
 
