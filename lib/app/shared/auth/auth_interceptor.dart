@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/shared/custom_dio/custom_dio.dart';
-import 'package:poke_api/app/shared/custom_dio/custom_interceptor.dart';
+
 import '../../app_module.dart';
+import '../custom_dio/custom_dio.dart';
 import 'auth_controller.dart';
 
 class AuthInterceptors extends InterceptorsWrapper {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/login/components/card_login.dart';
-import 'package:poke_api/app/modules/login/login_controller.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+
+import 'components/card_login.dart';
+import 'login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;

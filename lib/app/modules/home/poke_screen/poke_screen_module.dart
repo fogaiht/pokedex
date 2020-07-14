@@ -1,9 +1,10 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/poke_screen/poke_screen_controller.dart';
-import 'package:poke_api/app/modules/home/poke_screen/poke_screen_page.dart';
 
-class PokeScreenModule extends ModuleWidget {
+import 'poke_screen_controller.dart';
+import 'poke_screen_page.dart';
+
+class PokeScreenModule extends WidgetModule {
   @override
   List<Bind> get binds => [
         Bind((i) => PokeScreenController()),

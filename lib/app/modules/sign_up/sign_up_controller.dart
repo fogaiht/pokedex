@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:mobx/mobx.dart';
-import 'package:poke_api/app/shared/auth/auth_repository.dart';
-import 'package:poke_api/app/shared/models/user_model.dart';
-import 'package:poke_api/app/utils/sub_states.dart';
 
 import '../../app_module.dart';
+import '../../shared/auth/auth_repository.dart';
+import '../../utils/sub_states.dart';
 
 part 'sign_up_controller.g.dart';
 
