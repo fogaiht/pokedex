@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/shared/custom_dio/custom_interceptor.dart';
 
 import '../constants.dart';
 import 'auth_interceptor.dart';

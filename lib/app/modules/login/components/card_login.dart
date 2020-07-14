@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:poke_api/app/utils/form_controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-import '../login_controller.dart';
 import '../../../utils/components/state_button.dart';
+import '../../../utils/form_controller.dart';
+import '../login_controller.dart';
 
 class CardLogin extends StatefulWidget {
   final Color primaryColor;
@@ -45,11 +45,6 @@ class _CardLoginState extends State<CardLogin> {
     super.didChangeDependencies();
   }
 
-  _popView() {
-    print('Card Login');
-    Modular.to.pushReplacementNamed("/home");
-  }
-
   @override
   Widget build(BuildContext context) {
     double _widthSize = MediaQuery.of(context).size.width;
@@ -57,8 +52,7 @@ class _CardLoginState extends State<CardLogin> {
     return Transform.scale(
       scale: 0.95,
       child: Container(
-        decoration: BoxDecoration(
-            color: Color(0x00343131), borderRadius: BorderRadius.circular(30)),
+        decoration: BoxDecoration(color: Color(0x00343131), borderRadius: BorderRadius.circular(30)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -128,20 +122,22 @@ class _CardLoginState extends State<CardLogin> {
                       builder: (_) {
 //                    return _stateButton(controller.subState);
                         return StateButton(
-                          subState: controller.subState,
-                          secondaryColor: widget.secondaryColor,
-                          primaryColor: widget.primaryColor,
-                          textLabel: Text(
-                            "LOGIN",
-                            style: TextStyle(
-                                color: widget.secondaryColor,
-                                fontFamily: widget.fontFamily,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w900),
-                          ),
-                       functionResult: () => controller.signIn(() {Modular.to.pushReplacementNamed("/home");})
-                          // functionResult: () => controller.signInDev(() {Modular.to.pushReplacementNamed("/home");})
-                        );
+                            subState: controller.subState,
+                            secondaryColor: widget.secondaryColor,
+                            primaryColor: widget.primaryColor,
+                            textLabel: Text(
+                              "LOGIN",
+                              style: TextStyle(
+                                  color: widget.secondaryColor,
+                                  fontFamily: widget.fontFamily,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                            functionResult: () => controller.signIn(() {
+                                  Modular.to.pushReplacementNamed("/home");
+                                })
+                            // functionResult: () => controller.signInDev(() {Modular.to.pushReplacementNamed("/home");})
+                            );
 
 //                      return _stateButton(state: controller.subState, controller: controller, context: context);
                       },
@@ -191,13 +187,9 @@ class _CardLoginState extends State<CardLogin> {
           children: <Widget>[
             Container(
               width: widget.widthSize * 0.8,
-              decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(8.0)),
+              decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(8.0)),
               child: TextFormField(
-                obscureText: keyboardType == TextInputType.visiblePassword
-                    ? controller.obscureText
-                    : false,
+                obscureText: keyboardType == TextInputType.visiblePassword ? controller.obscureText : false,
                 keyboardType: keyboardType,
                 focusNode: currentFocus,
                 textInputAction: TextInputAction.next,
@@ -206,7 +198,9 @@ class _CardLoginState extends State<CardLogin> {
                   if (nextFocus != null) {
                     FocusScope.of(context).requestFocus(nextFocus);
                   } else {
-                    controller.signIn(() {Modular.to.pushReplacementNamed("/home");});
+                    controller.signIn(() {
+                      Modular.to.pushReplacementNamed("/home");
+                    });
                   }
                 },
                 onChanged: onChanged,
@@ -222,17 +216,14 @@ class _CardLoginState extends State<CardLogin> {
                     suffixIcon: keyboardType == TextInputType.visiblePassword
                         ? Observer(builder: (_) {
                             return IconButton(
-                              icon: controller.obscureText
-                                  ? Icon(Icons.visibility_off)
-                                  : Icon(Icons.visibility),
+                              icon: controller.obscureText ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
                               onPressed: controller.changeVisibility,
                             );
                           })
                         : null,
                     labelText: labelText,
                     labelStyle: TextStyle(color: widget.primaryColor),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0)),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: widget.primaryColor),
                     ),
@@ -241,8 +232,7 @@ class _CardLoginState extends State<CardLogin> {
                     ),
                     errorText: errorText != null ? errorText() : null,
                     focusedErrorBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.redAccent, width: 0.0),
+                      borderSide: BorderSide(color: Colors.redAccent, width: 0.0),
                       borderRadius: BorderRadius.circular(6.0),
                     ),
                     errorBorder: OutlineInputBorder(

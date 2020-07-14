@@ -1,14 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:poke_api/app/modules/home/home_controller.dart';
-import 'package:poke_api/app/shared/auth/auth_repository.dart';
-import 'package:poke_api/app/shared/models/pokemon_model.dart';
-import 'package:poke_api/app/shared/models/user_model.dart';
+
+import '../../../shared/auth/auth_repository.dart';
+import '../home_controller.dart';
 
 part 'poke_screen_controller.g.dart';
 
-class PokeScreenController = _PokeScreenControllerBase
-    with _$PokeScreenController;
+class PokeScreenController = _PokeScreenControllerBase with _$PokeScreenController;
 
 abstract class _PokeScreenControllerBase with Store {
   List<String> cardGenerate = List<String>.generate(20, (i) {
@@ -27,21 +25,14 @@ abstract class _PokeScreenControllerBase with Store {
   @observable
   String currentUrl = "";
 
-
   @action
-  void setPokemon(){
+  void setPokemon() {
     value = homeController.user.pokemonList.length;
-    if(value == 0){
-      
-    }
+    if (value == 0) {}
   }
-
-
 
   @action
   void increment() {
-    
-
     if (value < homeController.user.pokemonList.length) {
       print(value);
       value++;

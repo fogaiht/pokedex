@@ -1,6 +1,4 @@
-import 'dart:collection';
-
-import 'package:poke_api/app/shared/models/pokemon_model.dart';
+import 'pokemon_model.dart';
 
 class UserModel {
   List<PokeModel> pokemonList;

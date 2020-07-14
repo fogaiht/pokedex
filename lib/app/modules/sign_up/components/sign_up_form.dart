@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/sign_up/sign_up_controller.dart';
-import 'package:poke_api/app/utils/components/state_button.dart';
-import 'package:poke_api/app/utils/form_controller.dart';
+
+import '../../../utils/components/state_button.dart';
+import '../../../utils/form_controller.dart';
+import '../sign_up_controller.dart';
 
 class SignUpForm extends StatefulWidget {
   final Color primaryColor;
@@ -212,13 +213,9 @@ class _SignUpFormState extends State<SignUpForm> {
           children: <Widget>[
             Container(
               width: widthSize * 0.8,
-              decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(8.0)),
+              decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(8.0)),
               child: TextFormField(
-                obscureText: keyboardType == TextInputType.visiblePassword
-                    ? controller.visibility
-                    : false,
+                obscureText: keyboardType == TextInputType.visiblePassword ? controller.visibility : false,
                 keyboardType: keyboardType,
                 focusNode: currentFocus,
                 textInputAction: TextInputAction.next,
@@ -245,16 +242,13 @@ class _SignUpFormState extends State<SignUpForm> {
 //        prefixIcon: keyboardType == TextInputType.emailAddress ? Icon(Icons.alternate_email) : Icon(Icons.lock_outline),
                     suffixIcon: keyboardType == TextInputType.visiblePassword
                         ? IconButton(
-                            icon: controller.visibility
-                                ? Icon(Icons.visibility_off)
-                                : Icon(Icons.visibility),
+                            icon: controller.visibility ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
                             onPressed: controller.changeVisibility,
                           )
                         : null,
                     labelText: labelText,
                     labelStyle: TextStyle(color: primaryColor),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0)),
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: primaryColor),
                     ),
@@ -263,8 +257,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                     errorText: errorText != null ? errorText() : null,
                     focusedErrorBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.redAccent, width: 0.0),
+                      borderSide: BorderSide(color: Colors.redAccent, width: 0.0),
                       borderRadius: BorderRadius.circular(6.0),
                     ),
                     errorBorder: OutlineInputBorder(
@@ -279,10 +272,4 @@ class _SignUpFormState extends State<SignUpForm> {
       ),
     );
   }
-}
-
-_fieldFocusChange(
-    {BuildContext context, FocusNode currentFocus, FocusNode nextFocus}) {
-  currentFocus.unfocus();
-  FocusScope.of(context).requestFocus(nextFocus);
 }

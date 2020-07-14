@@ -11,7 +11,7 @@ class PokedexRight extends StatefulWidget {
 class _PokedexRightState extends State<PokedexRight> {
   @override
   Widget build(BuildContext context) {
-    double widthSize = MediaQuery.of(context).size.width;
+    // double widthSize = MediaQuery.of(context).size.width;
     double heightSize = MediaQuery.of(context).size.height;
     return Container(
       child: Stack(

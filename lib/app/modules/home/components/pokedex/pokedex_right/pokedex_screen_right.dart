@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_right/pokedex_pokeinfo.dart';
-import 'package:poke_api/app/modules/home/poke_detail/poke_detail_module.dart';
+
+import 'pokedex_pokeinfo.dart';
 
 class PokedexScreenRight extends StatefulWidget {
   @override
