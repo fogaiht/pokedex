@@ -5,15 +5,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class SplashScreenPage extends StatefulWidget {
   final String title;
-  const SplashScreenPage({Key key, this.title = "SplashScreen"})
-      : super(key: key);
+  const SplashScreenPage({Key key, this.title = "SplashScreen"}) : super(key: key);
 
   @override
   _SplashScreenPageState createState() => _SplashScreenPageState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage>
-    with SingleTickerProviderStateMixin {
+class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerProviderStateMixin {
   AnimationController animController;
   Animation<double> opacityAnimation;
 
@@ -22,19 +20,16 @@ class _SplashScreenPageState extends State<SplashScreenPage>
     opacityAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
-    ).animate(CurvedAnimation(
-        parent: animController,
-        curve: Interval(0, 1, curve: Curves.easeInQuad)));
+    ).animate(CurvedAnimation(parent: animController, curve: Interval(0, 1, curve: Curves.easeInQuad)));
 
     super.didChangeDependencies();
   }
 
   @override
   void initState() {
-    animController = AnimationController(
-        duration: Duration(milliseconds: 1000), vsync: this);
+    animController = AnimationController(duration: Duration(milliseconds: 2000), vsync: this);
     animController.forward();
-    Timer(Duration(milliseconds: 2000), () {
+    Timer(Duration(milliseconds: 3500), () {
       Modular.to.pushReplacementNamed("/login");
     });
     super.initState();
@@ -56,9 +51,25 @@ class _SplashScreenPageState extends State<SplashScreenPage>
                   child: AnimatedBuilder(
                     animation: animController,
                     builder: (context, snapshot) {
+                      print(opacityAnimation.value);
                       return Opacity(
-                          opacity: opacityAnimation.value,
-                          child: Image.asset("assets/pokeballss.png"));
+                        opacity: opacityAnimation.value,
+                        child: opacityAnimation.value < 0.5
+                            ? Container(
+                                height: widthSize * 0.5,
+                                width: widthSize * 0.5,
+                                child: Image.asset(
+                                  "assets/notCapturedPokemonStar2.png",
+                                ),
+                              )
+                            : Container(
+                                height: widthSize * 0.5,
+                                width: widthSize * 0.5,
+                                child: Image.asset(
+                                  "assets/capturedPokemonStar2.png",
+                                ),
+                              ),
+                      );
                     },
                   ),
                 )),
