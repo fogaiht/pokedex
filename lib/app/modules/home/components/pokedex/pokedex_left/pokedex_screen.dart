@@ -30,7 +30,6 @@ class _PokedexScreenState extends State<PokedexScreen> {
 
   @override
   Widget build(BuildContext context) {
-    homeController.getUser();
     double widthSize = MediaQuery.of(context).size.width;
     double heightSize = MediaQuery.of(context).size.height * 0.46;
     return Container(

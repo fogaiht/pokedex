@@ -1,11 +1,15 @@
-import 'package:poke_api/app/modules/sign_up/sign_up_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/sign_up/sign_up_page.dart';
+
+import '../../shared/auth/http_provider.dart';
+import 'sign_up_controller.dart';
+import 'sign_up_page.dart';
+import 'sign_up_repository.dart';
 
 class SignUpModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => SignUpController()),
+        Bind((i) => SignUpController(i.get<SignUpRepository>())),
+        Bind((i) => SignUpRepository(Modular.get<HttpProvider>())),
       ];
 
   @override

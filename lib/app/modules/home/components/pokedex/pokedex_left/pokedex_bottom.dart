@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:poke_api/app/modules/home/home_controller.dart';
+import 'package:super_qr_reader/super_qr_reader.dart';
 
 class PokedexBottom extends StatefulWidget {
   final Function onRightTap;
   final Function onLeftTap;
 
-  const PokedexBottom({Key key, this.onRightTap, this.onLeftTap})
-      : super(key: key);
+  const PokedexBottom({Key key, this.onRightTap, this.onLeftTap}) : super(key: key);
   @override
   _PokedexBottomState createState() => _PokedexBottomState();
 }
@@ -134,8 +134,19 @@ class _PokedexBottomState extends State<PokedexBottom> {
             bottom: heightSize * 0.4,
             left: widthSize * 0.253,
             child: GestureDetector(
-              onTap: () {
-                scan();
+              onTap: () async {
+                String results = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ScanView(
+                      cornerColor: Colors.red,
+                    ),
+                  ),
+                );
+
+                if (results != null) {
+                  homeController.addPokemon(results);
+                }
               },
               child: Container(
                 width: widthSize * 0.286,
@@ -168,9 +179,7 @@ class _PokedexBottomState extends State<PokedexBottom> {
               child: Container(
                 height: heightSize * 0.236,
                 width: heightSize * 0.236,
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(50)),
+                decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(50)),
               ),
             ),
           ),

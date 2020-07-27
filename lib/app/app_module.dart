@@ -1,24 +1,23 @@
-import 'package:poke_api/app/app_controller.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
-import 'package:poke_api/app/app_widget.dart';
-import 'package:poke_api/app/modules/home/home_module.dart';
-import 'package:poke_api/app/modules/login/login_module.dart';
-import 'package:poke_api/app/modules/sign_up/sign_up_module.dart';
-import 'package:poke_api/app/modules/splash_screen/splash_screen_module.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-import 'shared/auth/auth_repository.dart';
-import 'shared/auth/auth_controller.dart';
+import 'app_controller.dart';
+import 'app_widget.dart';
+import 'modules/home/home_module.dart';
+import 'modules/login/login_module.dart';
+import 'modules/sign_up/sign_up_module.dart';
+import 'modules/splash_screen/splash_screen_module.dart';
+import 'shared/auth/auth_interceptor.dart';
+import 'shared/auth/http_provider.dart';
 import 'shared/custom_dio/custom_dio.dart';
 
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
-    Bind((i) => AuthController()),
-    Bind((i) => AuthRepository()),
-    Bind((i) => CustomDio()),
-
+        Bind((i) => AuthInterceptors2(i.get<CustomDio>())),
+        Bind((i) => HttpProvider(i.get<AuthInterceptors2>())),
+        Bind((i) => CustomDio()),
       ];
 
   @override

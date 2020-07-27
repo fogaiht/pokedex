@@ -1,15 +1,20 @@
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:mobx/mobx.dart';
-import 'package:poke_api/app/shared/auth/auth_repository.dart';
-import 'package:poke_api/app/shared/models/user_model.dart';
-import 'package:poke_api/app/utils/sub_states.dart';
+
+import '../../shared/models/user_model.dart';
+import '../../utils/sub_states.dart';
+import 'home_repository.dart';
 
 part 'home_controller.g.dart';
 
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
-  final AuthRepository _authRepository = Modular.get();
+  // final AuthRepository _authRepository = Modular.get();
+
+  final HomeRepository _homeRepository;
+
+  _HomeControllerBase(this._homeRepository);
 
   @observable
   SubState subState;
@@ -53,10 +58,9 @@ abstract class _HomeControllerBase with Store {
   @action
   void decrement() {
     if (screenIndex >= 0 && user.pokemonList.length > 0) {
-        screenIndex--;
+      screenIndex--;
       if (screenIndex + 1 != user.pokemonList.length) {
-        if(screenIndex >= 0)
-          currentURL = user.pokemonList[screenIndex]?.sprites?.frontDefault;
+        if (screenIndex >= 0) currentURL = user.pokemonList[screenIndex]?.sprites?.frontDefault;
       }
     }
   }
@@ -64,9 +68,8 @@ abstract class _HomeControllerBase with Store {
   @action
   getUser() async {
     try {
-      var response = await _authRepository.getCurrentUser();
+      var response = await _homeRepository.getCurrentUser();
       if (response != null) {
-        print("AAAAAAAAAAAAAAAAAAAAAAAA ${response.runtimeType}");
         user = UserModel.fromJson(response);
         // print(user.name.toString());
       }
@@ -77,18 +80,20 @@ abstract class _HomeControllerBase with Store {
 
   @action
   addPokemon(String pokeNumber) async {
-    var pokemon = {"pokeNumber": pokeNumber};
+    final cancel = BotToast.showLoading();
     try {
       subState = SubState.loading;
-      var response = await _authRepository.addPokemon(pokemon);
-      // print("RESPOSTA NO CONTROLLER: $response");
+      var response = await _homeRepository.addPokemon(pokeNumber);
+      await Future.delayed(Duration(milliseconds: 1000)); //um tempo de delay para aparecer o loading
       if (response != null) {
         subState = SubState.success;
         getUser();
         screenIndex = -1;
         user = UserModel.fromJson(response);
+        cancel();
       }
     } catch (e) {
+      cancel();
       print(e);
       subState = SubState.error;
     }

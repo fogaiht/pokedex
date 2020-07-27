@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -7,6 +8,7 @@ class AppWidget extends StatelessWidget {
     Color primaryColor = Colors.red;
     Color secondaryColor = Colors.white;
     return MaterialApp(
+      builder: BotToastInit(),
       debugShowCheckedModeBanner: false,
       navigatorKey: Modular.navigatorKey,
       title: 'Flutter Slidy',

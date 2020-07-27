@@ -17,20 +17,19 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
 
   @override
   void initState() {
+    controller.getUser();
 
-if(controller.screenPage){
-pageViewController = PageController(initialPage:0);
-} else {
-  pageViewController = PageController(initialPage:1);
-}
-  
+    if (controller.screenPage) {
+      pageViewController = PageController(initialPage: 0);
+    } else {
+      pageViewController = PageController(initialPage: 1);
+    }
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    controller.getUser();
     return Container(
       child: Scaffold(
         body: SafeArea(

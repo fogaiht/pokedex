@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../shared/auth/auth_repository.dart';
 import '../home_controller.dart';
 
 part 'poke_screen_controller.g.dart';
@@ -13,7 +12,6 @@ abstract class _PokeScreenControllerBase with Store {
     return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png";
   });
 
-  final AuthRepository _authRepository = Modular.get();
   HomeController homeController = Modular.get<HomeController>();
 
   @observable
@@ -49,7 +47,7 @@ abstract class _PokeScreenControllerBase with Store {
     if (value > 0) {
       value--;
       if (value != 0) {
-        _authRepository.fetchPost(homeController.user.pokemonList[value].sprites.frontDefault);
+        currentUrl = homeController.user.pokemonList[value].sprites.frontDefault;
       }
       print(value);
     }

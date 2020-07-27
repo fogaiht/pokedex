@@ -2,21 +2,22 @@ import 'dart:async';
 
 import 'package:mobx/mobx.dart';
 
-import '../../app_module.dart';
-import '../../shared/auth/auth_repository.dart';
 import '../../utils/sub_states.dart';
+import 'sign_up_repository.dart';
 
 part 'sign_up_controller.g.dart';
 
 class SignUpController = _SignUpControllerBase with _$SignUpController;
 
 abstract class _SignUpControllerBase with Store {
-  final String emailRegExpression =
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  final String passwordRegExpression =
-      r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$";
+  final String emailRegExpression = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+  final String passwordRegExpression = r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$";
 
-  final AuthRepository _authRepository = AppModule.to.get();
+  // final AuthRepository _authRepository = AppModule.to.get();
+
+  final SignUpRepository _repository;
+
+  _SignUpControllerBase(this._repository);
 
   @observable
   String name;
@@ -55,14 +56,11 @@ abstract class _SignUpControllerBase with Store {
   // bool visibilityPassword = true;
   // @action
   // changeVisibilityPassword() => visibilityPassword = !visibilityPassword;
-  
+
   // @observable
   // bool visibilityConfirmPassword = true;
   // @action
   // changeVisibilityConfirmPassword() => visibilityConfirmPassword = !visibilityConfirmPassword;
-
-
-
 
   String validateEmail() {
     if (email == null || email == "") {
@@ -92,15 +90,9 @@ abstract class _SignUpControllerBase with Store {
   }
 
   createUser(function) async {
-    var user = {
-      "name": name,
-      "email": email,
-      "password": password,
-      "pokemonList": []
-    };
     try {
       subState = SubState.loading;
-      var response = await _authRepository.createUser(user);
+      var response = await _repository.createUser(name: name, email: email, password: password);
       print("RESPOSTA NO CONTROLLER: ${response.data}");
       if (response != null) {
         subState = SubState.success;

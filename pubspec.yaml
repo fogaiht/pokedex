@@ -17,6 +17,9 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  bot_toast: ^3.0.1
+  super_qr_reader:
+    git: https://github.com/fogaiht/super_qr_reader
   barcode_scan: ^2.0.1
   flutter_spinkit: ^4.1.2
   shared_preferences: ^0.5.6+2
