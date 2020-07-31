@@ -17,6 +17,8 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  intl: ^0.16.1
+  material_design_icons_flutter: ^4.0.5345
   bot_toast: ^3.0.1
   super_qr_reader:
     git: https://github.com/fogaiht/super_qr_reader
@@ -103,8 +105,8 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 scripts:
-  bdx: flutter pub run build_runner build --delete-conflicting-outputs
-  clx: flutter pub run build_runner clean
-  wtx: flutter pub run build_runner watch
+  mobx_build: flutter pub run build_runner build --delete-conflicting-outputs
+  mobx_clean: flutter pub run build_runner clean
+  mobx_watch: flutter pub run build_runner watch --delete-conflicting-outputs
   get: flutter pub get
   set_app_icon: flutter pub run flutter_launcher_icons:main

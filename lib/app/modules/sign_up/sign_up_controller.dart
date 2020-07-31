@@ -1,107 +1,42 @@
 import 'dart:async';
 
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../utils/sub_states.dart';
 import 'sign_up_repository.dart';
+import 'sign_up_store.dart';
+import 'sign_up_validator.dart';
 
 part 'sign_up_controller.g.dart';
 
 class SignUpController = _SignUpControllerBase with _$SignUpController;
 
 abstract class _SignUpControllerBase with Store {
-  final String emailRegExpression = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  final String passwordRegExpression = r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$";
-
-  // final AuthRepository _authRepository = AppModule.to.get();
-
   final SignUpRepository _repository;
+  final SignUpStore store;
 
-  _SignUpControllerBase(this._repository);
+  final SignUpValidator validators;
 
-  @observable
-  String name;
-  @action
-  setName(String value) => name = value;
+  _SignUpControllerBase(this._repository, this.store, this.validators);
 
-  @observable
-  String email;
-  @action
-  setEmail(String value) => email = value.replaceAll(new RegExp(r"\s\b|\b\s"), "");
-
-  @observable
-  String password;
-  @action
-  setPassword(String value) => password = value;
-
-  @observable
-  String confirmPassword;
-  @action
-  setConfirmPassword(String value) => confirmPassword = value;
-
-  @observable
-  SubState subState = SubState.start;
-  @action
-  setSubState(SubState value) {
-    print(value);
-    subState = value;
-  }
-
-  @observable
-  bool visibility = true;
-  @action
-  changeVisibility() => visibility = !visibility;
-
-  // @observable
-  // bool visibilityPassword = true;
-  // @action
-  // changeVisibilityPassword() => visibilityPassword = !visibilityPassword;
-
-  // @observable
-  // bool visibilityConfirmPassword = true;
-  // @action
-  // changeVisibilityConfirmPassword() => visibilityConfirmPassword = !visibilityConfirmPassword;
-
-  String validateEmail() {
-    if (email == null || email == "") {
-      return null;
-    } else if (!RegExp(emailRegExpression).hasMatch(email)) {
-      return "Digite um email válido!";
-    }
-    return null;
-  }
-
-  String validatePassword() {
-    if (password == null || password == "") {
-      return null;
-    } else {
-      if (!RegExp(passwordRegExpression).hasMatch(password)) {
-        return "A sua senha deve conter pelo menos: \n- Uma letra maiúscula\n- Uma letra minúscula\n- Caracter especial (ex: @#!..)\n- Números\n- 6 Dígitos";
-      } else {
-        return null;
-      }
-    }
-  }
-
-  String validateConfirmPassword() {
-    if (confirmPassword == password) return null;
-
-    return "Senhas não são iguais, confirme!";
-  }
-
-  createUser(function) async {
+  createUser() async {
     try {
-      subState = SubState.loading;
-      var response = await _repository.createUser(name: name, email: email, password: password);
+      store.subState = SubState.loading;
+      var response = await _repository.createUser(
+        name: store.name,
+        email: store.email,
+        password: store.password,
+      );
       print("RESPOSTA NO CONTROLLER: ${response.data}");
       if (response != null) {
-        subState = SubState.success;
-        final Duration pageDelay = Duration(milliseconds: 2000);
-        Timer(pageDelay, function);
+        store.subState = SubState.success;
+        await Future.delayed(Duration(milliseconds: 2000));
+        Modular.to.pushReplacementNamed("/login");
       }
     } catch (e) {
       print(e);
-      subState = SubState.error;
+      store.subState = SubState.error;
     }
   }
 }

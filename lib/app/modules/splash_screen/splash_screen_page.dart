@@ -51,7 +51,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerPr
                   child: AnimatedBuilder(
                     animation: animController,
                     builder: (context, snapshot) {
-                      print(opacityAnimation.value);
+                      // print(opacityAnimation.value);
                       return Opacity(
                         opacity: opacityAnimation.value,
                         child: opacityAnimation.value < 0.5

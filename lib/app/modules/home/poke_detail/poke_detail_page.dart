@@ -6,7 +6,7 @@ import '../components/pokedex/pokedex_right/pokedex_screen_right.dart';
 
 class PokeDetailPage extends StatefulWidget {
   final String title;
-  final PokeModel pokeModel;
+  final PokemonModel pokeModel;
   const PokeDetailPage({Key key, this.title = "PokeDetail", this.pokeModel}) : super(key: key);
 
   @override

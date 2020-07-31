@@ -48,13 +48,16 @@ class _CardLoginState extends State<CardLogin> {
   @override
   Widget build(BuildContext context) {
     double _widthSize = MediaQuery.of(context).size.width;
-    double _heightSize = MediaQuery.of(context).size.height;
-    return Transform.scale(
-      scale: 0.95,
-      child: Container(
-        decoration: BoxDecoration(color: Color(0x00343131), borderRadius: BorderRadius.circular(30)),
+    return Container(
+      decoration: BoxDecoration(
+        color: Color(0xff343131),
+        borderRadius: BorderRadius.circular(300),
+      ),
+      child: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Center(
               child: Hero(
@@ -63,7 +66,6 @@ class _CardLoginState extends State<CardLogin> {
                   "assets/FogaihtDev.png",
                   fit: BoxFit.contain,
                   width: (_widthSize * 0.4),
-                  height: (_heightSize * 0.1),
                 ),
               ),
             ),
@@ -133,7 +135,7 @@ class _CardLoginState extends State<CardLogin> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.w900),
                             ),
-                            functionResult: () => controller.signIn(() {
+                            onTap: () => controller.signIn(() {
                                   Modular.to.pushReplacementNamed("/home");
                                 })
                             // functionResult: () => controller.signInDev(() {Modular.to.pushReplacementNamed("/home");})
@@ -209,37 +211,38 @@ class _CardLoginState extends State<CardLogin> {
                   color: widget.primaryColor,
                 ),
                 decoration: InputDecoration(
-                    filled: true,
-                    fillColor: widget.secondaryColor,
-                    contentPadding: EdgeInsets.all(12.0),
+                  filled: true,
+                  fillColor: widget.secondaryColor,
+                  contentPadding: EdgeInsets.all(12.0),
 //        prefixIcon: keyboardType == TextInputType.emailAddress ? Icon(Icons.alternate_email) : Icon(Icons.lock_outline),
-                    suffixIcon: keyboardType == TextInputType.visiblePassword
-                        ? Observer(builder: (_) {
-                            return IconButton(
-                              icon: controller.obscureText ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
-                              onPressed: controller.changeVisibility,
-                            );
-                          })
-                        : null,
-                    labelText: labelText,
-                    labelStyle: TextStyle(color: widget.primaryColor),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: widget.primaryColor),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: widget.primaryColor),
-                    ),
-                    errorText: errorText != null ? errorText() : null,
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.redAccent, width: 0.0),
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red, width: 0.0),
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                    errorStyle: TextStyle(fontSize: 18)),
+                  suffixIcon: keyboardType == TextInputType.visiblePassword
+                      ? Observer(builder: (_) {
+                          return IconButton(
+                            icon: controller.obscureText ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+                            onPressed: controller.changeVisibility,
+                          );
+                        })
+                      : null,
+                  labelText: labelText,
+                  labelStyle: TextStyle(color: widget.primaryColor),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: widget.primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: widget.primaryColor),
+                  ),
+                  errorText: errorText != null ? errorText() : null,
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent, width: 0.0),
+                    borderRadius: BorderRadius.circular(6.0),
+                  ),
+                  // errorBorder: OutlineInputBorder(
+                  //   borderSide: BorderSide(color: Colors.red, width: 0.0),
+                  //   borderRadius: BorderRadius.circular(6.0),
+                  // ),
+                  // errorStyle: TextStyle(fontSize: 13),
+                ),
               ),
             ),
           ],

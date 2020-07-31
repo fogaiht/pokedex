@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'components/sign_up_form.dart';
+import 'components/create_account_button.dart';
+import 'components/sign_up_input_field_widget.dart';
 import 'sign_up_controller.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -13,17 +14,16 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
-  // FormController _formController;
-
-  // final FocusNode _nameNode = FocusNode();
-  // final FocusNode _emailNode = FocusNode();
-  // final FocusNode _passwordNode = FocusNode();
-  // final FocusNode _confirmPasswordNode = FocusNode();
+  @override
+  void initState() {
+    controller.validators.setupValidations();
+    super.initState();
+  }
 
   @override
-  void didChangeDependencies() {
-    // _formController = FormController();
-    super.didChangeDependencies();
+  void dispose() {
+    controller.validators.dispose();
+    super.dispose();
   }
 
   @override
@@ -31,18 +31,37 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
     // double widthSize = MediaQuery.of(context).size.width;
     // double heightSize = MediaQuery.of(context).size.height;
 
-    Color primaryColor = Colors.red;
+    Color primaryColor = Colors.white;
     // Color secondaryColor = Colors.white;
     return Scaffold(
       backgroundColor: primaryColor,
+      appBar: AppBar(
+        title: Text(
+          "Criar Conta",
+        ),
+        backgroundColor: Colors.red,
+      ),
       body: SafeArea(
         child: Center(
-          child: SingleChildScrollView(child: SignUpForm()),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.red,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SignUpInputField(controller),
+                  ),
+                ),
+                CreateAccountButton(controller),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
-
 }
-
-

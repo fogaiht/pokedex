@@ -1,7 +1,7 @@
 import 'pokemon_model.dart';
 
 class UserModel {
-  List<PokeModel> pokemonList;
+  List<PokemonModel> pokemonList;
   String id;
   String name;
   String email;
@@ -19,9 +19,9 @@ class UserModel {
 
   UserModel.fromJson(Map<String, dynamic> json) {
     if (json['pokemonList'] != null) {
-      pokemonList = new List<PokeModel>();
+      pokemonList = new List<PokemonModel>();
       json['pokemonList'].forEach((v) {
-        pokemonList.add(new PokeModel.fromJson(v));
+        pokemonList.add(new PokemonModel.fromJson(v));
       });
     }
 
