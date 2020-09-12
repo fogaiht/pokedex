@@ -32,16 +32,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        body: SafeArea(
-          child: PageView(
-            controller: pageViewController,
-            scrollDirection: Axis.horizontal,
-            reverse: false,
-            children: <Widget>[
-              PokeScreenModule(),
-              PokeDetailModule(),
-            ],
-          ),
+        body: PageView(
+          controller: pageViewController,
+          scrollDirection: Axis.horizontal,
+          reverse: false,
+          children: <Widget>[
+            PokeScreenModule(),
+            PokeDetailModule(),
+          ],
         ),
       ),
     );

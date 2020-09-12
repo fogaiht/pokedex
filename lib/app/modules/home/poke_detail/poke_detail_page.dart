@@ -21,6 +21,21 @@ class _PokeDetailPageState extends State<PokeDetailPage> {
     // double widthSize = MediaQuery.of(context).size.width;
     double heightSize = MediaQuery.of(context).size.height;
     return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.white,
+              Colors.blue,
+              Colors.red[900],
+            ],
+            stops: [
+              0,
+              0.2,
+              1
+            ]),
+      ),
       child: Stack(
         children: <Widget>[
           Positioned(

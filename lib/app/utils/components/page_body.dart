@@ -13,15 +13,13 @@ class PageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Container(child: topChild),
-          Container(child: middleChild),
-          Container(child: bottomChild),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Container(child: topChild),
+        Container(child: middleChild),
+        Container(child: bottomChild),
+      ],
     );
   }
 }
