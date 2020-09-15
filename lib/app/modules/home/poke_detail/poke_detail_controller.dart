@@ -9,7 +9,7 @@ class PokeDetailController = _PokeDetailControllerBase
 abstract class _PokeDetailControllerBase with Store {
 
 @observable
-PokeModel pokeModel;
+PokemonModel pokeModel;
 
   @observable
   int value = 0;

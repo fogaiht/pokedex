@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 import '../sub_states.dart';
 
 class StateButton extends StatelessWidget {
   final SubState subState;
-  final Function functionResult;
+  final Function onTap;
   final Text textLabel;
   final double borderRadius;
   final Color primaryColor;
@@ -23,7 +24,7 @@ class StateButton extends StatelessWidget {
   StateButton({
     Key key,
     @required this.subState,
-    @required this.functionResult,
+    @required this.onTap,
     this.textLabel,
     this.colorText,
     this.colorStart,
@@ -78,7 +79,7 @@ class StateButton extends StatelessWidget {
           return _subStateLoginButton(
               color: primaryColor,
               child: Center(
-                child: this.textLabel,
+                child: textLabel,
               ),
               width: MediaQuery.of(context).size.width * 0.45,
               borderRadius: 30);
@@ -102,7 +103,7 @@ class StateButton extends StatelessWidget {
             ),
             duration: Duration(milliseconds: 250),
             child: child),
-        onTap: functionResult,
+        onTap: onTap,
       ),
     );
   }

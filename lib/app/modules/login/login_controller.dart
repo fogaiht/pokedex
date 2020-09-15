@@ -56,7 +56,7 @@ abstract class _LoginControllerBase with Store {
   setPokeList(List<String> value) => pokeList = value;
 
   @observable
-  List<PokeModel> pokemonList;
+  List<PokemonModel> pokemonList;
 
   @observable
   var currentUser;
@@ -110,9 +110,8 @@ abstract class _LoginControllerBase with Store {
       subState = SubState.loading;
       var response = await _loginRepository.signIn(model);
       if (response != null) {
-        subState = SubState.success;
-        final Duration pageDelay = Duration(milliseconds: 2000);
-        Timer(pageDelay, function);
+        subState = SubState.success;        
+        Timer(Duration(milliseconds: 2000), function);
       }
     } catch (e) {
       print(e);
@@ -202,7 +201,7 @@ abstract class _LoginControllerBase with Store {
   //       pokemonList = (response.data["pokemonList"] as List)
   //           .cast<Map<String, dynamic>>()
   //           ?.map((item) {
-  //         return PokeModel.fromJson(item);
+  //         return PokemonModel.fromJson(item);
   //       })?.toList();
 
   //       print(pokemonList[1].name);

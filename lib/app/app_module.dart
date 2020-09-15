@@ -3,8 +3,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'app_controller.dart';
 import 'app_widget.dart';
-import 'modules/home/home_module.dart';
-import 'modules/login/login_module.dart';
+// import 'modules/home/home_module.dart';
+// import 'modules/login/login_module.dart';
+import 'modules/home_v2/home_module.dart';
+import 'modules/login_v2/login_module.dart';
 import 'modules/sign_up/sign_up_module.dart';
 import 'modules/splash_screen/splash_screen_module.dart';
 import 'shared/auth/auth_interceptor.dart';
@@ -23,9 +25,9 @@ class AppModule extends MainModule {
   @override
   List<Router> get routers => [
         Router('/', module: SplashScreenModule()),
-        Router('/', module: HomeModule()),
-        Router('/', module: LoginModule()),
-        Router('/', module: SignUpModule()),
+        Router('/home', module: HomeModule()),
+        Router('/login', module: LoginModule()),
+        Router('/signup', module: SignUpModule()),
       ];
 
   @override

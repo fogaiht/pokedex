@@ -5,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Color primaryColor = Colors.red;
+    Color primaryColor = Colors.black;
     Color secondaryColor = Colors.white;
     return MaterialApp(
       builder: BotToastInit(),
@@ -21,20 +21,20 @@ class AppWidget extends StatelessWidget {
           labelStyle: TextStyle(color: primaryColor),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryColor),
+            borderSide: BorderSide(color: primaryColor, width: 2.0),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: primaryColor),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.redAccent, width: 0.0),
+            borderSide: BorderSide(color: Colors.grey, width: 3.0),
             borderRadius: BorderRadius.circular(6.0),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red, width: 0.0),
+            borderSide: BorderSide(color: Colors.grey, width: 1.0),
             borderRadius: BorderRadius.circular(6.0),
           ),
-          errorStyle: TextStyle(fontSize: 18),
+          errorStyle: TextStyle(fontSize: 12, color: Colors.white),
         ),
       ),
       initialRoute: '/',

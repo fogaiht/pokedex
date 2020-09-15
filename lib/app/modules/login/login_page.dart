@@ -20,12 +20,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
-    // double heightSize = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.red,
-      // appBar: AppBar(
-      //   title: Text(widget.title),
-      // ),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
