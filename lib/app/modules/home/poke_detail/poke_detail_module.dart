@@ -12,8 +12,8 @@ class PokeDetailModule extends WidgetModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router("/pokeDetail", child: (_, args) => PokeDetailPage()),
+  List<ModularRouter> get routers => [
+        ModularRouter("/pokeDetail", child: (_, args) => PokeDetailPage()),
       ];
 
   static Inject get to => Inject<PokeDetailModule>.of();

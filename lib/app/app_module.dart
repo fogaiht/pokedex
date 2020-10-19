@@ -23,11 +23,11 @@ class AppModule extends MainModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router('/', module: SplashScreenModule()),
-        Router('/home', module: HomeModule()),
-        Router('/login', module: LoginModule()),
-        Router('/signup', module: SignUpModule()),
+  List<ModularRouter> get routers => [
+        ModularRouter('/', module: SplashScreenModule()),
+        ModularRouter('/home', module: HomeModule()),
+        ModularRouter('/login', module: LoginModule()),
+        ModularRouter('/signup', module: SignUpModule()),
       ];
 
   @override

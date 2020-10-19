@@ -9,8 +9,8 @@ class ProfileModule extends ChildModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router('/', child: (_, args) => ProfilePage()),
+  List<ModularRouter> get routers => [
+        ModularRouter('/', child: (_, args) => ProfilePage()),
       ];
 
   static Inject get to => Inject<ProfileModule>.of();

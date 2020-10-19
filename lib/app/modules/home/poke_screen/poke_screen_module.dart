@@ -11,8 +11,8 @@ class PokeScreenModule extends WidgetModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router("/pokeScreen", child: (_, args) => PokeScreenPage()),
+  List<ModularRouter> get routers => [
+        ModularRouter("/pokeScreen", child: (_, args) => PokeScreenPage()),
       ];
 
   static Inject get to => Inject<PokeScreenModule>.of();

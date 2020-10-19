@@ -21,8 +21,8 @@ class SignUpModule extends ChildModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => SignUpPage()),
+  List<ModularRouter> get routers => [
+        ModularRouter(Modular.initialRoute, child: (_, args) => SignUpPage()),
       ];
 
   static Inject get to => Inject<SignUpModule>.of();

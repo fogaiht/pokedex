@@ -15,10 +15,10 @@ class HomeModule extends ChildModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router('/home', child: (_, args) => HomePage()),
-        Router('/home', module: PokeScreenModule()),
-        Router('/home', module: PokeDetailModule()),
+  List<ModularRouter> get routers => [
+        ModularRouter('/home', child: (_, args) => HomePage()),
+        ModularRouter('/home', module: PokeScreenModule()),
+        ModularRouter('/home', module: PokeDetailModule()),
       ];
 
   static Inject get to => Inject<HomeModule>.of();
