@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/home_controller.dart';
-import 'package:poke_api/app/modules/home/poke_detail/poke_detail_module.dart';
-import 'package:poke_api/app/modules/home/poke_screen/poke_screen_module.dart';
+
+import 'home_controller.dart';
+import 'poke_detail/poke_detail_module.dart';
+import 'poke_screen/poke_screen_module.dart';
 
 class HomePage extends StatefulWidget {
   final String title;

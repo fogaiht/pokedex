@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/shared/models/user_model.dart';
 
 import '../../shared/auth/http_provider.dart';
+import '../../shared/models/user_model.dart';
 
 class HomeRepository extends Disposable {
   final HttpProvider _httpProvider;

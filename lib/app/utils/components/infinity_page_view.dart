@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 
 const int kMaxValue = 2000000000;
 const int kMiddleValue = 1000000000;

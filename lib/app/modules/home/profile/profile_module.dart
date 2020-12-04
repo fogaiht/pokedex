@@ -1,6 +1,7 @@
-import 'package:poke_api/app/modules/home/profile/profile_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/profile/profile_page.dart';
+
+import 'profile_controller.dart';
+import 'profile_page.dart';
 
 class ProfileModule extends ChildModule {
   @override

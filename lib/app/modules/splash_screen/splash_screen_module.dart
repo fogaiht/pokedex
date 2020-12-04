@@ -1,6 +1,7 @@
-import 'package:poke_api/app/modules/splash_screen/splash_screen_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/splash_screen/splash_screen_page.dart';
+
+import 'splash_screen_controller.dart';
+import 'splash_screen_page.dart';
 
 class SplashScreenModule extends ChildModule {
   @override

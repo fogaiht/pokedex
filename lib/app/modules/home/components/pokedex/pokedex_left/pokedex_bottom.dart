@@ -1,10 +1,12 @@
 import 'dart:ui';
+
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/home_controller.dart';
 import 'package:super_qr_reader/super_qr_reader.dart';
+
+import '../../../home_controller.dart';
 
 class PokedexBottom extends StatefulWidget {
   final Function onRightTap;
