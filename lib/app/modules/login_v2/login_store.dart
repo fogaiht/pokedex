@@ -1,7 +1,8 @@
 import 'dart:convert';
-import 'package:mobx/mobx.dart';
-import 'package:poke_api/app/utils/sub_states.dart';
 
+import 'package:mobx/mobx.dart';
+
+import '../../utils/sub_states.dart';
 
 part 'login_store.g.dart';
 

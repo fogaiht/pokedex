@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:poke_api/app/shared/models/pokemon_model.dart';
+
+import '../../../shared/models/pokemon_model.dart';
 
 part 'poke_detail_controller.g.dart';
 

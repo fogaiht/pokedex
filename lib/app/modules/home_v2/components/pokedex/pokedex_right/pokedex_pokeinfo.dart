@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:poke_api/app/shared/models/pokemon_model.dart';
 
+import '../../../../../shared/models/pokemon_model.dart';
 import 'pokedex_base_stats.dart';
 
 class PokeInfo extends StatefulWidget {

@@ -1,8 +1,9 @@
-import 'package:poke_api/app/modules/login/login_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/login/login_page.dart';
-import 'package:poke_api/app/modules/login/login_repository.dart';
-import 'package:poke_api/app/shared/custom_dio/custom_dio.dart';
+
+import '../../shared/custom_dio/custom_dio.dart';
+import 'login_controller.dart';
+import 'login_page.dart';
+import 'login_repository.dart';
 
 class LoginModule extends ChildModule {
   @override

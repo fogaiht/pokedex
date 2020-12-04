@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:poke_api/app/modules/home_v2/components/pokedex/pokedex_right/poke_join_right.dart';
-import 'package:poke_api/app/modules/home_v2/components/pokedex/pokedex_right/pokedex_screen_right.dart';
 
+import '../components/pokedex/pokedex_right/poke_join_right.dart';
+import '../components/pokedex/pokedex_right/pokedex_screen_right.dart';
 import '../home_controller.dart';
 
 class RightPage extends StatelessWidget {

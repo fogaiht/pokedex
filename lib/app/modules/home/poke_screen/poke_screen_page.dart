@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/poke_join_left.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/pokedex_bottom.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/pokedex_header.dart';
-import 'package:poke_api/app/modules/home/components/pokedex/pokedex_left/pokedex_screen.dart';
-import 'package:poke_api/app/modules/home/home_controller.dart';
 
+import '../components/pokedex/pokedex_left/poke_join_left.dart';
+import '../components/pokedex/pokedex_left/pokedex_bottom.dart';
+import '../components/pokedex/pokedex_left/pokedex_header.dart';
+import '../components/pokedex/pokedex_left/pokedex_screen.dart';
+import '../home_controller.dart';
 import 'poke_screen_controller.dart';
 
 class PokeScreenPage extends StatefulWidget {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/home_controller.dart';
-import 'package:poke_api/app/modules/home/poke_screen/poke_screen_controller.dart';
-import 'package:poke_api/app/utils/components/custom_circular_progress.dart';
+
+import '../../../../../utils/components/custom_circular_progress.dart';
+import '../../../home_controller.dart';
+import '../../../poke_screen/poke_screen_controller.dart';
 
 class PokedexScreen extends StatefulWidget {
   final int pokeNumber;

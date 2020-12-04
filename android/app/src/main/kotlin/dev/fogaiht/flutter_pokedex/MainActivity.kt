@@ -1,4 +1,4 @@
-package com.example.poke_api
+package dev.fogaiht.flutter_pokedex
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
