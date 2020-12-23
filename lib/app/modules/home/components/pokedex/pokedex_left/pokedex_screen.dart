@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/home_controller.dart';
-import 'package:poke_api/app/modules/home/poke_screen/poke_screen_controller.dart';
-import 'package:poke_api/app/utils/components/custom_circular_progress.dart';
+
+import '../../../../../utils/components/custom_circular_progress.dart';
+import '../../../home_controller.dart';
 
 class PokedexScreen extends StatefulWidget {
   final int pokeNumber;
+  final HomeController homeController;
 
-  const PokedexScreen({Key key, this.pokeNumber}) : super(key: key);
+  const PokedexScreen({Key key, this.pokeNumber, @required this.homeController}) : super(key: key);
 
   @override
   _PokedexScreenState createState() => _PokedexScreenState();
@@ -19,15 +19,6 @@ List<String> cardGenerate = List<String>.generate(30, (i) {
 });
 
 class _PokedexScreenState extends State<PokedexScreen> {
-  PokeScreenController pokeScreenController;
-  HomeController homeController;
-  @override
-  void initState() {
-    pokeScreenController = Modular.get();
-    homeController = Modular.get();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
@@ -64,24 +55,25 @@ class _PokedexScreenState extends State<PokedexScreen> {
               width: widthSize * 0.573,
               height: heightSize * 0.526,
               decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(heightSize * 0.05)),
+                borderRadius: BorderRadius.all(Radius.circular(heightSize * 0.05)),
                 color: Color(0xff222222),
               ),
               child: Observer(builder: (_) {
                 return Center(
-                  child: homeController.user?.pokemonList == null
+                  child: widget.homeController.store.user?.pokemonList == null
                       ? CustomCircularProgress()
-                      : homeController.screenIndex == -1 ? Text(
-                          //         // "${20}\nPokemons",
-                          "${homeController.user.pokemonList.length}\nPokemons",
-                          style: TextStyle(
-                            color: Color(0xff00ff00),
-                            fontSize: 45,
-                            fontFamily: 'SevenSegment',
-                          ),
-                          textAlign: TextAlign.center,
-                        ) : Transform.scale(scale: 2.3, child: Image.network(homeController.currentURL)),
+                      : widget.homeController.store.screenIndex == -1
+                          ? Text(
+                              //         // "${20}\nPokemons",
+                              "${widget.homeController.store.user.pokemonList.length}\nPokemons",
+                              style: TextStyle(
+                                color: Color(0xff00ff00),
+                                fontSize: 45,
+                                fontFamily: 'SevenSegment',
+                              ),
+                              textAlign: TextAlign.center,
+                            )
+                          : Transform.scale(scale: 2.3, child: Image.network(widget.homeController.store.currentURL)),
                 );
               }),
             ),
@@ -93,8 +85,7 @@ class _PokedexScreenState extends State<PokedexScreen> {
               width: widthSize * 0.025,
               height: widthSize * 0.025,
               decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(heightSize * 0.1)),
+                borderRadius: BorderRadius.all(Radius.circular(heightSize * 0.1)),
                 color: Color(0xffff0000),
               ),
             ),
@@ -106,8 +97,7 @@ class _PokedexScreenState extends State<PokedexScreen> {
               width: widthSize * 0.025,
               height: widthSize * 0.025,
               decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(heightSize * 0.1)),
+                borderRadius: BorderRadius.all(Radius.circular(heightSize * 0.1)),
                 color: Color(0xffff0000),
               ),
             ),
@@ -119,8 +109,7 @@ class _PokedexScreenState extends State<PokedexScreen> {
               width: widthSize * 0.04,
               height: widthSize * 0.04,
               decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(heightSize * 0.1)),
+                borderRadius: BorderRadius.all(Radius.circular(heightSize * 0.1)),
                 color: Color(0xffff0000),
               ),
             ),

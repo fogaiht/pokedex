@@ -3,10 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'app_controller.dart';
 import 'app_widget.dart';
-// import 'modules/home/home_module.dart';
-// import 'modules/login/login_module.dart';
-import 'modules/home_v2/home_module.dart';
-import 'modules/login_v2/login_module.dart';
+import 'modules/home/home_module.dart';
+import 'modules/login/login_module.dart';
 import 'modules/sign_up/sign_up_module.dart';
 import 'modules/splash_screen/splash_screen_module.dart';
 import 'shared/auth/auth_interceptor.dart';

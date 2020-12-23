@@ -1,29 +1,23 @@
 import 'dart:ui';
-import 'package:barcode_scan/barcode_scan.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:poke_api/app/modules/home/home_controller.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:super_qr_reader/super_qr_reader.dart';
+
+import '../../../home_controller.dart';
 
 class PokedexBottom extends StatefulWidget {
   final Function onRightTap;
   final Function onLeftTap;
 
-  const PokedexBottom({Key key, this.onRightTap, this.onLeftTap}) : super(key: key);
+  final HomeController homeController;
+
+  const PokedexBottom({Key key, this.onRightTap, this.onLeftTap, this.homeController}) : super(key: key);
   @override
   _PokedexBottomState createState() => _PokedexBottomState();
 }
 
 class _PokedexBottomState extends State<PokedexBottom> {
-  HomeController homeController;
-
-  @override
-  void initState() {
-    homeController = Modular.get();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
@@ -94,7 +88,7 @@ class _PokedexBottomState extends State<PokedexBottom> {
             top: widthSize * 0.106,
             right: widthSize * 0.106,
             child: GestureDetector(
-              onTap: homeController.increment,
+              onTap: widget.homeController.store.increment,
               child: Container(
                 width: widthSize * 0.106,
                 height: widthSize * 0.106,
@@ -114,7 +108,7 @@ class _PokedexBottomState extends State<PokedexBottom> {
             top: widthSize * 0.106,
             right: widthSize * 0.106 * 3,
             child: GestureDetector(
-              onTap: homeController.decrement,
+              onTap: widget.homeController.store.decrement,
               child: Container(
                 width: widthSize * 0.106,
                 height: widthSize * 0.106,
@@ -145,14 +139,14 @@ class _PokedexBottomState extends State<PokedexBottom> {
                 );
 
                 if (results != null) {
-                  homeController.addPokemon(results);
+                  widget.homeController.addPokemon(results);
                 }
               },
               child: Container(
                 width: widthSize * 0.286,
                 height: heightSize * 0.37,
                 child: Icon(
-                  Icons.fingerprint,
+                  MdiIcons.qrcode,
                   size: heightSize * 0.236,
                 ),
                 decoration: BoxDecoration(
@@ -174,7 +168,18 @@ class _PokedexBottomState extends State<PokedexBottom> {
             top: 0,
             child: GestureDetector(
               onTap: () {
-                scan();
+                var pokemonIndex = widget.homeController.store.screenIndex;
+                var userPokemonList = widget.homeController.store.user.pokemonList;
+                if (pokemonIndex >= 0) {
+                  widget.homeController.store.selectPokemon(userPokemonList[pokemonIndex]);
+                  print(widget.homeController.store.selectedPokemon);
+                  widget.homeController.pageController.animateToPage(
+                    1,
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.ease,
+                  );
+                }
+                // scan();
               },
               child: Container(
                 height: heightSize * 0.236,
@@ -188,25 +193,25 @@ class _PokedexBottomState extends State<PokedexBottom> {
     );
   }
 
-  Future scan() async {
-    try {
-      String barcode = await BarcodeScanner.scan();
-      // setState(() => this.qrScan = barcode);
-      homeController.addPokemon(barcode);
-    } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
-        // setState(() {
-        //   this.qrScan = 'The user did not grant the camera permission!';
-        // });
-      } else {
-        // setState(() => this.qrScan = 'Unknown error: $e');
-      }
-    } on FormatException {
-      // setState(() => this.qrScan = '');
-    } catch (e) {
-      // setState(() => this.qrScan = 'Unknown error: $e');
-    }
-  }
+//   Future scan() async {
+//     try {
+//       String barcode = await BarcodeScanner.scan();
+//       // setState(() => this.qrScan = barcode);
+//       widget.homeController.addPokemon(barcode);
+//     } on PlatformException catch (e) {
+//       if (e.code == BarcodeScanner.CameraAccessDenied) {
+//         // setState(() {
+//         //   this.qrScan = 'The user did not grant the camera permission!';
+//         // });
+//       } else {
+//         // setState(() => this.qrScan = 'Unknown error: $e');
+//       }
+//     } on FormatException {
+//       // setState(() => this.qrScan = '');
+//     } catch (e) {
+//       // setState(() => this.qrScan = 'Unknown error: $e');
+//     }
+//   }
 }
 
 class ClipPlus extends CustomClipper<Path> {

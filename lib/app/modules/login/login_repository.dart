@@ -26,17 +26,6 @@ class LoginRepository extends Disposable {
     }
   }
 
-    Future<dynamic> getCurrentUser() async {
-//    await Future.delayed(Duration(milliseconds: 2500));
-    try {
-      var response = await _customDio.get("/findUserById");
-      return response.data;
-    } on DioError catch (e) {
-      print(e);
-      throw (e);
-    }
-  }
-
   @override
   void dispose() {}
 }

@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:poke_api/app/shared/validators/form_error_state.dart';
 
+import '../../shared/validators/form_error_state.dart';
 import 'login_store.dart';
 
 part 'login_validator.g.dart';

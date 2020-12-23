@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'components/card_login.dart';
 import 'login_controller.dart';
+import 'widgets/fogaihtdev_image.dart';
+import 'widgets/login_button.dart';
+import 'widgets/login_input_data/login_input_data.dart';
+import 'widgets/signup_button.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;
@@ -12,38 +15,38 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-printa() {
-  print("object");
-}
-
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
+  void initState() {
+    controller.validators.setupValidations();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.validators.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    double widthSize = MediaQuery.of(context).size.width;
+    double _heightSize = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.red,
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: widthSize,
-                height: widthSize,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(width: 3, color: Colors.black),
-                    borderRadius: BorderRadius.circular(1000)),
-                child: CardLogin(
-                  fontFamily: "Montserrat",
-                  primaryColor: Colors.red,
-                  secondaryColor: Colors.white,
-                  signUpRoute: "/signup",
-                  widthSize: widthSize,
-                  heightSize: widthSize,
-                ),
-              ),
-            ),
+      body: SingleChildScrollView(
+        child: Container(
+          height: _heightSize,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Spacer(),
+              FogaihtDevImage(),
+              Spacer(),
+              LoginInputData(controller),
+              LoginButton(controller),
+              SignupButton(),
+              Spacer(),
+            ],
           ),
         ),
       ),

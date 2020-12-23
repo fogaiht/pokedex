@@ -2,13 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../../../../../shared/models/pokemon_model.dart';
 import 'pokedex_base_stats.dart';
 
 class PokeInfo extends StatefulWidget {
+  final PokemonModel selectedPokemon;
+
   final Color pokeColor;
   final int pokeNumber;
 
-  const PokeInfo({Key key, this.pokeColor, this.pokeNumber}) : super(key: key);
+  const PokeInfo({Key key, this.pokeColor, this.pokeNumber, this.selectedPokemon}) : super(key: key);
   @override
   _PokeInfoState createState() => _PokeInfoState();
 }
@@ -20,6 +23,8 @@ class _PokeInfoState extends State<PokeInfo> {
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width * 0.91;
     double heightSize = MediaQuery.of(context).size.height * 0.848;
+
+    var pokemon =  widget.selectedPokemon;
     return ClipPath(
       clipper: ClipScreen(),
       child: Container(
@@ -105,14 +110,14 @@ class _PokeInfoState extends State<PokeInfo> {
                               },
                               child: Opacity(
                                 opacity: 1,
-                                child: Image.asset('assets/001.png'),
+                                child: Transform.scale(scale: 2.2,child: Image.network(widget.selectedPokemon.sprites.frontDefault)),
                               ),
                             ),
                           ),
                           Container(
                             width: heightSize * 0.245,
                             child: Text(
-                              "— Bulbasaur —",
+                              "— ${pokemon.name} —",
                               style: TextStyle(
                                 fontSize: heightSize * 0.03,
                                 fontFamily: "Montserrat",
@@ -136,7 +141,7 @@ class _PokeInfoState extends State<PokeInfo> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Text(
-                              "#001",
+                              "#${pokemon.id}",
                               style: TextStyle(
                                   fontSize: 30,
                                   fontFamily: "Pokemon",
@@ -167,11 +172,11 @@ class _PokeInfoState extends State<PokeInfo> {
                                 ? Transform.scale(
                                     scale: 1,
                                     child: Image.asset(
-                                        'assets/capturedPokemonStar.png'))
+                                        'assets/capturedPokemonStar2.png'))
                                 : Transform.scale(
                                     scale: 1,
                                     child: Image.asset(
-                                        'assets/notCapturedPokemonStar.png'))
+                                        'assets/notCapturedPokemonStar2.png'))
                             // Text(
                             //     "Captured",
                             //     textAlign: TextAlign.center,
@@ -216,7 +221,7 @@ class _PokeInfoState extends State<PokeInfo> {
                               ),
                               child: Center(
                                 child: Text(
-                                  "Grass",
+                                  "${pokemon.types[0].type.name}",
                                   style: TextStyle(
                                     fontSize: heightSize * 0.02,
                                     fontFamily: "Montserrat",
@@ -224,7 +229,7 @@ class _PokeInfoState extends State<PokeInfo> {
                                 ),
                               ),
                             ),
-                            Container(
+                            pokemon.types.length > 1 ? Container(
                               width: widthSize * 0.18,
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -235,14 +240,14 @@ class _PokeInfoState extends State<PokeInfo> {
                               ),
                               child: Center(
                                 child: Text(
-                                  "Poison",
+                                  "${pokemon.types[1].type.name}",
                                   style: TextStyle(
                                     fontSize: heightSize * 0.02,
                                     fontFamily: "Montserrat",
                                   ),
                                 ),
                               ),
-                            ),
+                            ) : SizedBox(),
                           ],
                         ),
                       ),

@@ -2,19 +2,18 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../shared/auth/http_provider.dart';
-import '../../utils/custom_shared_preferences.dart';
+import '../../shared/models/user_model.dart';
 
 class HomeRepository extends Disposable {
   final HttpProvider _httpProvider;
-  final CustomSharedPrefs prefs = CustomSharedPrefs();
 
   HomeRepository(this._httpProvider);
 
-  Future<dynamic> getCurrentUser() async {
-//    await Future.delayed(Duration(milliseconds: 2500));
+  Future<UserModel> getCurrentUser() async {
     try {
       var response = await _httpProvider.client.get("/findUserById");
-      return response.data;
+      final _finalResponse = UserModel.fromJson(response.data);
+      return _finalResponse;
     } on DioError catch (e) {
       print(e);
       throw (e);

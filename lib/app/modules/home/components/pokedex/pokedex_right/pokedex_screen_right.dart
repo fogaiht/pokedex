@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../shared/models/pokemon_model.dart';
 import 'pokedex_pokeinfo.dart';
 
 class PokedexScreenRight extends StatefulWidget {
+  final PokemonModel selectedPokemon;
+
+  const PokedexScreenRight({Key key, this.selectedPokemon}) : super(key: key);
+
+
   @override
   _PokedexScreenRightState createState() => _PokedexScreenRightState();
 }
@@ -14,15 +20,15 @@ class _PokedexScreenRightState extends State<PokedexScreenRight> {
   Widget build(BuildContext context) {
     double widthSize = MediaQuery.of(context).size.width;
     double heightSize = MediaQuery.of(context).size.height;
+
+    print(widget.selectedPokemon.name);
     return ClipPath(
       clipper: ClipScreenShadow(),
       child: Container(
         width: widthSize,
         height: heightSize,
-        decoration: BoxDecoration(
-            color: Colors.red[900],
-            borderRadius:
-                BorderRadius.all(Radius.circular(heightSize * 0.035))),
+        decoration:
+            BoxDecoration(color: Colors.red[900], borderRadius: BorderRadius.all(Radius.circular(heightSize * 0.035))),
         child: Stack(
           children: <Widget>[
             ClipPath(
@@ -31,17 +37,15 @@ class _PokedexScreenRightState extends State<PokedexScreenRight> {
                 width: widthSize,
                 height: heightSize,
                 decoration: BoxDecoration(
-                    color: Colors.red[900],
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(heightSize * 0.035))),
+                    color: Colors.red[900], borderRadius: BorderRadius.all(Radius.circular(heightSize * 0.035))),
               ),
-            ),            
+            ),
             Positioned(
-              top: heightSize * 0.03,
-              bottom: heightSize * 0.03,
-              right: heightSize * 0.03,
-              left: heightSize * 0.03,              
-                child: PokeInfo()),
+                top: heightSize * 0.03,
+                bottom: heightSize * 0.03,
+                right: heightSize * 0.03,
+                left: heightSize * 0.03,
+                child: PokeInfo(selectedPokemon: widget.selectedPokemon)),
           ],
         ),
       ),
