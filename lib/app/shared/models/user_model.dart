@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'pokemon_model.dart';
 
 class UserModel {
@@ -25,7 +27,7 @@ class UserModel {
       });
     }
 
-  pokemonList.sort((a, b) => a.id.compareTo(b.id));
+    pokemonList.sort((a, b) => a.id.compareTo(b.id));
 
     id = json['_id'];
     name = json['name'];
@@ -50,5 +52,23 @@ class UserModel {
   @override
   String toString() {
     return 'UserModel(pokemonList: $pokemonList, id: $id, name: $name, email: $email, created: $created, userType: $userType)';
+  }
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+
+    return o is UserModel &&
+        listEquals(o.pokemonList, pokemonList) &&
+        o.id == id &&
+        o.name == name &&
+        o.email == email &&
+        o.created == created &&
+        o.userType == userType;
+  }
+
+  @override
+  int get hashCode {
+    return pokemonList.hashCode ^ id.hashCode ^ name.hashCode ^ email.hashCode ^ created.hashCode ^ userType.hashCode;
   }
 }

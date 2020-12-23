@@ -15,8 +15,8 @@ class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
-        Bind((i) => AuthInterceptors2(i.get<CustomDio>())),
-        Bind((i) => HttpProvider(i.get<AuthInterceptors2>())),
+        Bind((i) => AuthInterceptors(i.get<CustomDio>())),
+        Bind((i) => HttpProvider(i.get<AuthInterceptors>())),
         Bind((i) => CustomDio()),
       ];
 

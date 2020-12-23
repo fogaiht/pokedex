@@ -7,7 +7,7 @@ import 'auth_interceptor.dart';
 class HttpProvider extends Disposable {
   Dio client;
 
-  final AuthInterceptors2 auth;
+  final AuthInterceptors auth;
 
   HttpProvider(this.auth) {
     client = Dio();

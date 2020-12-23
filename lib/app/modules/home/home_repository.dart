@@ -23,7 +23,7 @@ class HomeRepository extends Disposable {
   Future<dynamic> addPokemon(String pokeNumber) async {
     try {
       var response = await _httpProvider.client.post("/addPokemon", data: {"pokeNumber": pokeNumber});
-      print("RESPOSTA ADD POKEMON: ${response.data}");
+      // print("RESPOSTA ADD POKEMON: ${response.data}");
       return response.data;
     } on DioError catch (e) {
       print(e);

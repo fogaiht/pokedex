@@ -52,5 +52,4 @@ abstract class _HomeStoreBase with Store {
       }
     }
   }
-
 }

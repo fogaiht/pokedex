@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
@@ -62,6 +63,31 @@ class PokemonModel {
   @override
   String toString() {
     return 'PokemonModel(height: $height, id: $id, name: $name, sprites: $sprites, stats: $stats, types: $types, weight: $weight)';
+  }
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is PokemonModel &&
+      o.height == height &&
+      o.id == id &&
+      o.name == name &&
+      o.sprites == sprites &&
+      listEquals(o.stats, stats) &&
+      listEquals(o.types, types) &&
+      o.weight == weight;
+  }
+
+  @override
+  int get hashCode {
+    return height.hashCode ^
+      id.hashCode ^
+      name.hashCode ^
+      sprites.hashCode ^
+      stats.hashCode ^
+      types.hashCode ^
+      weight.hashCode;
   }
 }
 
@@ -140,6 +166,37 @@ class Sprites {
         "other": other == null ? null : other.toJson(),
         "versions": versions == null ? null : versions.toJson(),
       };
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is Sprites &&
+      o.backDefault == backDefault &&
+      o.backFemale == backFemale &&
+      o.backShiny == backShiny &&
+      o.backShinyFemale == backShinyFemale &&
+      o.frontDefault == frontDefault &&
+      o.frontFemale == frontFemale &&
+      o.frontShiny == frontShiny &&
+      o.frontShinyFemale == frontShinyFemale &&
+      o.other == other &&
+      o.versions == versions;
+  }
+
+  @override
+  int get hashCode {
+    return backDefault.hashCode ^
+      backFemale.hashCode ^
+      backShiny.hashCode ^
+      backShinyFemale.hashCode ^
+      frontDefault.hashCode ^
+      frontFemale.hashCode ^
+      frontShiny.hashCode ^
+      frontShinyFemale.hashCode ^
+      other.hashCode ^
+      versions.hashCode;
+  }
 }
 
 class Other {
@@ -163,6 +220,17 @@ class Other {
   Map<String, dynamic> toJson() => {
         "dream_world": dreamWorld == null ? null : dreamWorld.toJson(),
       };
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is Other &&
+      o.dreamWorld == dreamWorld;
+  }
+
+  @override
+  int get hashCode => dreamWorld.hashCode;
 }
 
 class DreamWorld {
@@ -192,6 +260,18 @@ class DreamWorld {
         "front_default": frontDefault == null ? null : frontDefault,
         "front_female": frontFemale,
       };
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is DreamWorld &&
+      o.frontDefault == frontDefault &&
+      o.frontFemale == frontFemale;
+  }
+
+  @override
+  int get hashCode => frontDefault.hashCode ^ frontFemale.hashCode;
 }
 
 class Versions {
@@ -215,6 +295,17 @@ class Versions {
   Map<String, dynamic> toJson() => {
         "generation-i": generationI == null ? null : generationI.toJson(),
       };
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is Versions &&
+      o.generationI == generationI;
+  }
+
+  @override
+  int get hashCode => generationI.hashCode;
 }
 
 class GenerationI {
@@ -244,6 +335,18 @@ class GenerationI {
         "red-blue": redBlue == null ? null : redBlue.toJson(),
         "yellow": yellow == null ? null : yellow.toJson(),
       };
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is GenerationI &&
+      o.redBlue == redBlue &&
+      o.yellow == yellow;
+  }
+
+  @override
+  int get hashCode => redBlue.hashCode ^ yellow.hashCode;
 }
 
 class RedBlue {
@@ -285,6 +388,25 @@ class RedBlue {
         "front_default": frontDefault == null ? null : frontDefault,
         "front_gray": frontGray == null ? null : frontGray,
       };
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is RedBlue &&
+      o.backDefault == backDefault &&
+      o.backGray == backGray &&
+      o.frontDefault == frontDefault &&
+      o.frontGray == frontGray;
+  }
+
+  @override
+  int get hashCode {
+    return backDefault.hashCode ^
+      backGray.hashCode ^
+      frontDefault.hashCode ^
+      frontGray.hashCode;
+  }
 }
 
 class StatElement {
@@ -320,6 +442,19 @@ class StatElement {
         "effort": effort == null ? null : effort,
         "stat": stat == null ? null : stat.toJson(),
       };
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is StatElement &&
+      o.baseStat == baseStat &&
+      o.effort == effort &&
+      o.stat == stat;
+  }
+
+  @override
+  int get hashCode => baseStat.hashCode ^ effort.hashCode ^ stat.hashCode;
 }
 
 class TypeClass {
@@ -352,6 +487,18 @@ class TypeClass {
 
   @override
   String toString() => 'TypeClass(name: $name, url: $url)';
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is TypeClass &&
+      o.name == name &&
+      o.url == url;
+  }
+
+  @override
+  int get hashCode => name.hashCode ^ url.hashCode;
 }
 
 class Type {
@@ -384,4 +531,16 @@ class Type {
 
   @override
   String toString() => 'Type(slot: $slot, type: $type)';
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+  
+    return o is Type &&
+      o.slot == slot &&
+      o.type == type;
+  }
+
+  @override
+  int get hashCode => slot.hashCode ^ type.hashCode;
 }

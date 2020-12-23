@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 import '../../utils/custom_shared_preferences.dart';
 import '../custom_dio/custom_dio.dart';
 
-class AuthInterceptors2 extends InterceptorsWrapper {
+class AuthInterceptors extends InterceptorsWrapper {
   final CustomDio dio;
-  AuthInterceptors2(this.dio);
+  AuthInterceptors(this.dio);
   String token;
    final CustomSharedPrefs prefs = CustomSharedPrefs();
 
